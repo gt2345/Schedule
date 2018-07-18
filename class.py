@@ -40,6 +40,10 @@ class Course:
             else:
                 calendarDict[self.date] = [ins]
 
+        @staticmethod
+        def getIns(inputDf):
+            ins = inputDf.idxmax(axis=1)
+
     def __init__(self, title, startDate, weekdys):
         self.title = title
         self.classes = [] # array of lessons
@@ -58,6 +62,8 @@ class Course:
 
 
 
+
+
 classInput = [['Class 01', 10, 8],
          ['Class 02', 10, 8],
          ['Class 03', 10, 8]]
@@ -69,7 +75,7 @@ practiceInput = [['Practice 01', 10, 8],
 practiceDf = pd.DataFrame(practiceInput,columns=['Title', 'Lu', 'Jerry'],dtype=float)
 
 print(classDf)
-print(practiceDf)
+# print(practiceDf)
 
 calendarDict = {}
 
@@ -77,7 +83,9 @@ testDate = date(2018, 8, 7)
 course1 = Course(title='Summer3', startDate=testDate, weekdys=13567)
 #print(classDf['Title'])
 # course1.schedule(scheduleFrom=testDate, classInput=classDf, practiceInput=practiceDf)
-iter = dayIter(startDate=testDate, weekdys=str(13567))
+for x in classDf['Title']:
+    print(x)
 
+print(classDf['Title']['Class 01'])
 
 
