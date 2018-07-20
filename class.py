@@ -1,6 +1,7 @@
 from datetime import date
 import datetime
 import time
+import random
 import pandas as pd
 
 class DayIter:
@@ -70,6 +71,7 @@ class Course:
         self.iter = DayIter(start_date=start_date, weekdys=str(weekdys))
         self.class_list = []
         self.class_scheduled = 0
+        self.practice_scheduled = 0
 
 
 
@@ -95,12 +97,25 @@ def Schedule(courses, start_date):
     while True:
         done = True
         for c in courses:
-            if c.class_scheduled < len(c.lessons):
+            if c.class_scheduled < len(c.lessons[0]) or c.practice_scheduled < len(c.lessons[1]):
                 done = False
                 if c.iter.peek() == cur:
-                    l = c.lessons[c.class_scheduled]
+                    if c.class_scheduled < len(c.lessons[0]) and c.practice_scheduled < len(c.lessons[1]):
+                        rand = random.random()
+                        if rand <= 0.5:
+                            l = c.lessons[0][c.class_scheduled]
+                            c.class_scheduled += 1
+                        else :
+                            l = c.lessons[1][c.practice_scheduled]
+                            c.practice_scheduled += 1
+                    elif c.class_scheduled < len(c.lessons[0]):
+                        l = c.lessons[0][c.class_scheduled]
+                        c.class_scheduled += 1
+                    else:
+                        l = c.lessons[1][c.practice_scheduled]
+                        c.practice_scheduled += 1
+
                     l.schedule(date=cur, calendar_dict=calendar_dict)
-                    c.class_scheduled += 1
                     c.class_list.append([cur, c.title, l.title, l.ins])
                     # l = Lesson(title=classDf.iloc[c.classScheduled]['Title'], lessonDf=classDf.iloc[c.classScheduled], course=c)
                     # l.schedule(date=cur, ins=l.getIns(), calendarDict=calendarDict)
@@ -131,6 +146,7 @@ def ParseInput(classDf):
 
 # create lessons ob
 classDf = pd.read_csv('classInput.csv')
+practiceDf = pd.read_csv('practiceInput.csv')
 lessons = ParseInput(classDf)
 
 # calendarDict = {}
@@ -139,9 +155,9 @@ lessons = ParseInput(classDf)
 testDate2 = date(2018, 7, 27)
 testDate3 = date(2018, 8, 7)
 testDate1 = date(2018, 7, 15)
-course3 = Course(title='Summer3', start_date=testDate3, weekdys=13567, lessons=ParseInput(classDf))
-course2 = Course(title='Summer2', start_date=testDate2, weekdys=24567, lessons=ParseInput(classDf))
-course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=ParseInput(classDf))
+course3 = Course(title='Summer3', start_date=testDate3, weekdys=13567, lessons=[ParseInput(classDf), ParseInput(practiceDf)])
+course2 = Course(title='Summer2', start_date=testDate2, weekdys=24567, lessons=[ParseInput(classDf), ParseInput(practiceDf)])
+course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=[ParseInput(classDf), ParseInput(practiceDf)])
 # iter =
 
 # for x in range(1, 10):
