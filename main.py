@@ -26,7 +26,7 @@ def schedule(courses, start_date):
                                 if l.code[1] == 1 and not get_lesson(course=c, code=[1, 1]).scheduled:
                                     possible_lessons.append(l)
                                     break
-                                elif l.code[1] == 0 and get_lesson(course=c, code=[1, 1]).scheduled:
+                                elif get_lesson(course=c, code=[1, 1]).scheduled:
                                     possible_lessons.append(l)
                                     continue
 
