@@ -92,7 +92,7 @@ course2 = Course(title='Summer2', start_date=testDate2, weekdys=24567, lessons=p
 course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=parse_input(testDf))
 
 s = schedule(courses=[course1, course2, course3], start_date=testDate1)
-s.to_csv('res.csv')
+s.to_csv('Output/res.csv')
 # print(course3.lessons[2].code)
 
 
