@@ -18,7 +18,7 @@ class Course:
     def count_practice(self):
         count = 0
         for x in self.lessons:
-            if 'Practice: ' in x.title:
+            if 'Practice' in x.title:
                 count += 1
         return count
 

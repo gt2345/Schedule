@@ -1,15 +1,15 @@
 import datetime
+import pandas as pd
+
 
 class Lesson:
 
     def __init__(self, title, lessonDf, code):
         self.title = title
         self.lessonDf = lessonDf
-        self.code = [int(d) for d in str(code)]
-        if len(self.code) == 3:
-            self.code = [self.code[0] * 10 + self.code[1], self.code[2]]
+        self.code = code
         self.number = -1
-        self.practice = ('Practice: ' in self.title)
+        self.practice = ('Practice' in self.title)
         # print(self.lessonDf['Prerequisite'].item())
         self.scheduled = False
         self.date = None
@@ -32,10 +32,16 @@ class Lesson:
 
     def get_ins(self, calendar_dict, date, unavailableIns):
         # drop_list = ['Title', 'Prerequisite'] + unavailableIns
-        drop_list = ['Title', 'Code'] + unavailableIns
-        # lessonDf = classDf[classDf['Title'].isin([title])]
+        drop_list = ['Title', 'Sequence', 'Order'] + unavailableIns
 
-        ins = self.lessonDf[self.lessonDf['Title'].isin([self.title])].drop(drop_list, axis=1).idxmax(axis=1).item()
+        # Update lessonDf with date
+        # insDf = pd.read_csv('Punch card - Ins.csv')
+        cur_lessonDf = self.lessonDf[self.lessonDf['Title'].isin([self.title])].drop(drop_list, axis=1)
+
+
+
+        # ins = self.lessonDf[self.lessonDf['Title'].isin([self.title])].drop(drop_list, axis=1).idxmax(axis=1).item()
+        ins = cur_lessonDf.idxmax(axis=1).item()
 
         if date not in calendar_dict:
             calendar_dict[date] = []

@@ -1,5 +1,7 @@
 from datetime import date
 import datetime
+# from datetime import datetime
+import time
 import random
 import pandas as pd
 from course import Course
@@ -19,7 +21,6 @@ def schedule(courses, start_date):
                     possible_lessons = []
                     for l in c.lessons:
                         if not l.scheduled:
-
                             # Practice Class 01 corner case
                             if l.code[0] == 1:
                                 if l.code[1] == 1 and not get_lesson(course=c, code=[1, 1]).scheduled:
@@ -34,11 +35,15 @@ def schedule(courses, start_date):
                                     (l.code[1] == 1 and get_lesson(course=c, code=[l.code[0] - 1, 1]).scheduled):
                                 possible_lessons.append(l)
                                 continue
-
+                    print(c.title)
+                    print(possible_lessons)
                     if len(possible_lessons) == 0:
+                        print(cur)
                         print('Not Able to Schedule')
                         print('Class scheduled {}'.format(c.class_scheduled))
+                        print('Class total {}'.format(c.class_total))
                         print('Practice scheduled {}'.format(c.practice_scheduled))
+                        print('Practice total {}'.format(c.practice_total))
                         quit(99)
                     else:
                         # lesson = possible_lessons[1]
@@ -75,11 +80,8 @@ def schedule(courses, start_date):
     return calendar_df
 
 
-
 # create lessons ob
-classDf = pd.read_csv('classInput.csv')
-practiceDf = pd.read_csv('practiceInput.csv')
-testDf = pd.read_csv('Punch card.csv')
+testDf = pd.read_csv('Input/Punch card - Final.csv').fillna(0)
 
 testDate1 = date(2018, 5, 21)
 testDate2 = date(2018, 6, 27)
@@ -91,6 +93,6 @@ course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=p
 
 s = schedule(courses=[course1, course2, course3], start_date=testDate1)
 s.to_csv('res.csv')
-print(course1.count_practice())
-print(course1.class_total)
+# print(course3.lessons[2].code)
+
 

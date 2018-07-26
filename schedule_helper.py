@@ -36,7 +36,8 @@ def parse_input(classDf):
     lessons = []
     for title in classDf['Title']:
         # l = Lesson(title=title, lessonDf=classDf[classDf['Title'].isin([title])])
-        l = Lesson(title=title, lessonDf=classDf, code=str(classDf[classDf['Title'].isin([title])]['Code'].item()))
+        l = Lesson(title=title, lessonDf=classDf,
+                   code=[classDf[classDf['Title'].isin([title])]['Sequence'].item(),classDf[classDf['Title'].isin([title])]['Order'].item()])
         lessons.append(l)
     return lessons
 
