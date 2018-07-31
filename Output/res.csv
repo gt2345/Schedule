@@ -1,139 +1,96 @@
-,Date,Course_x,Number_x,Class_x,Ins_x,Course_y,Number_y,Class_y,Ins_y,Course,Number,Class,Ins
-0,2018-05-21,Summer1,1.0,Practice 01: Object I,Lu,,,,,,,,
-1,2018-05-23,Summer1,2.0,Practice 02: Object II,Lu,,,,,,,,
-2,2018-05-25,Summer1,2.0,Recursion I and Binary search,Sun,,,,,,,,
-3,2018-05-26,Summer1,3.0,Practice 03: Excercise 1,Jin,,,,,,,,
-4,2018-05-27,Summer1,3.0,Queue and Stack,Sun,,,,,,,,
-5,2018-05-28,Summer1,4.0,Practice 06: Queue Stack Deque,Lu,,,,,,,,
-6,2018-05-30,Summer1,4.0,Linked List,Sun,,,,,,,,
-7,2018-06-01,Summer1,5.0,Practice 04: Linked List,Lu,,,,,,,,
-8,2018-06-02,Summer1,6.0,Practice 05: Excercise 2,Jin,,,,,,,,
-9,2018-06-03,Summer1,5.0,Binary Tree,Sun,,,,,,,,
-10,2018-06-04,Summer1,7.0,Practice 07: Binary Tree 1,Lu,,,,,,,,
-11,2018-06-06,Summer1,8.0,Practice 08: Binary Tree 2,Lu,,,,,,,,
-12,2018-06-08,Summer1,6.0,Heap and Graph Search I,Sun,,,,,,,,
-13,2018-06-09,Summer1,9.0,Practice 09: Heap in Java,Lu,,,,,,,,
-14,2018-06-10,Summer1,7.0,DFS,Sun,,,,,,,,
-15,2018-06-11,Summer1,10.0,Practice 10: Implement Heap,Lu,,,,,,,,
-16,2018-06-13,Summer1,11.0,Practice 12: DFS + Review,Lu,,,,,,,,
-17,2018-06-15,Summer1,12.0,Practice 11: Excercise 3,Jin,,,,,,,,
-18,2018-06-16,Summer1,8.0,HashTable I and String I,Sun,,,,,,,,
-19,2018-06-17,Summer1,13.0,Practice 13: Map Set Hash,Lu,,,,,,,,
-20,2018-06-18,Summer1,9.0,String II,Sun,,,,,,,,
-21,2018-06-20,Summer1,14.0,Practice 14: HashTable II,Lu,,,,,,,,
-22,2018-06-22,Summer1,10.0,Bit,Sun,,,,,,,,
-23,2018-06-23,Summer1,15.0,Practice 16: Excercise 4,Jin,,,,,,,,
-24,2018-06-24,Summer1,11.0,Midterm I,Sun,,,,,,,,
-25,2018-06-25,Summer1,12.0,OOD 1,Lu,,,,,,,,
-26,2018-06-27,Summer1,13.0,Recursion II,Sun,,,,,,,,
-27,2018-06-28,,,,,Summer2,1.0,Practice 01: Object I,Lu,,,,
-28,2018-06-29,Summer1,16.0,Practice 17: Inheritance & etc,Jerry,Summer2,2.0,Recursion I and Binary search,Sun,,,,
-29,2018-06-30,Summer1,14.0,OOD 2,Lu,Summer2,2.0,Practice 03: Excercise 1,Jin,,,,
-30,2018-07-01,Summer1,15.0,Midterm II,Sun,Summer2,3.0,Practice 02: Object II,Jerry,,,,
-31,2018-07-02,Summer1,16.0,OOD 3,Lu,,,,,,,,
-32,2018-07-03,,,,,Summer2,3.0,Queue and Stack,Sun,,,,
-33,2018-07-04,Summer1,17.0,OOD 4,Lu,,,,,,,,
-34,2018-07-05,,,,,Summer2,4.0,Linked List,Sun,,,,
-35,2018-07-06,Summer1,17.0,Practice 25: OOD in Java,Jerry,Summer2,4.0,Practice 06: Queue Stack Deque,Lu,,,,
-36,2018-07-07,Summer1,18.0,Practice 18: Excercise 5,Jin,Summer2,5.0,Binary Tree,Sun,,,,
-37,2018-07-08,Summer1,19.0,Practice 22: Concurrency I,Lu,Summer2,5.0,Practice 04: Linked List,Jerry,,,,
-38,2018-07-09,Summer1,18.0,DP I,Zhao,,,,,,,,
-39,2018-07-10,,,,,Summer2,6.0,Practice 05: Excercise 2,Jin,,,,
-40,2018-07-11,Summer1,20.0,Practice 23: Concurrency II,Lu,,,,,,,,
-41,2018-07-12,,,,,Summer2,6.0,Heap and Graph Search I,Sun,,,,
-42,2018-07-13,Summer1,21.0,Practice 21: C++ vs Java,Lu,Summer2,7.0,Practice 11: Excercise 3,Jin,,,,
-43,2018-07-14,Summer1,22.0,Practice 19: Nested Class & etc,Jerry,Summer2,7.0,DFS,Sun,,,,
-44,2018-07-15,Summer1,19.0,DP II,Zhao,Summer2,8.0,Practice 07: Binary Tree 1,Lu,,,,
-45,2018-07-16,Summer1,23.0,Practice 20: Excercise 6,Jin,,,,,,,,
-46,2018-07-17,,,,,Summer2,9.0,Practice 08: Binary Tree 2,Lu,,,,
-47,2018-07-18,Summer1,20.0,DP III,Zhao,,,,,,,,
-48,2018-07-19,,,,,Summer2,10.0,Practice 09: Heap in Java,Lu,,,,
-49,2018-07-20,Summer1,21.0,System Design 1,Zhao,Summer2,8.0,HashTable I and String I,Sun,,,,
-50,2018-07-21,Summer1,22.0,Behavorial,Jon,Summer2,11.0,Practice 10: Implement Heap,Lu,,,,
-51,2018-07-22,Summer1,23.0,System Design 2,Zhao,Summer2,9.0,String II,Sun,,,,
-52,2018-07-23,Summer1,24.0,加强 1,Wu,,,,,,,,
-53,2018-07-24,,,,,Summer2,12.0,Practice 12: DFS + Review,Lu,,,,
-54,2018-07-25,Summer1,25.0,System Design 3,Zhao,,,,,,,,
-55,2018-07-26,,,,,Summer2,13.0,Practice 13: Map Set Hash,Lu,,,,
-56,2018-07-27,Summer1,26.0,System Design 4,Zhao,Summer2,10.0,Bit,Sun,,,,
-57,2018-07-28,Summer1,27.0,加强 2,Wu,Summer2,14.0,Practice 14: HashTable II,Lu,,,,
-58,2018-07-29,Summer1,28.0,System Design 5,Zhao,Summer2,11.0,Midterm I,Sun,,,,
-59,2018-07-30,Summer1,29.0,加强 3,Wu,,,,,,,,
-60,2018-07-31,,,,,Summer2,12.0,Recursion II,Sun,,,,
-61,2018-08-01,Summer1,30.0,System Design 6,Zhao,,,,,,,,
-62,2018-08-02,,,,,Summer2,15.0,Practice 16: Excercise 4,Jin,,,,
-63,2018-08-03,Summer1,31.0,加强 4,Sun,Summer2,13.0,OOD 1,Lu,,,,
-64,2018-08-04,Summer1,24.0,Practice 24: Excercise 7,Jin,Summer2,16.0,Practice 17: Inheritance & etc,Jerry,,,,
-65,2018-08-05,Summer1,32.0,加强 5,Sun,Summer2,14.0,OOD 2,Lu,,,,
-66,2018-08-06,Summer1,33.0,加强 6,Wu,,,,,,,,
-67,2018-08-07,,,,,Summer2,15.0,OOD 3,Lu,,,,
-68,2018-08-08,Summer1,34.0,加强 7,Sun,,,,,Summer3,1.0,Practice 01: Object I,Zhao
-69,2018-08-09,,,,,Summer2,16.0,OOD 4,Lu,,,,
-70,2018-08-10,Summer1,35.0,加强 8,Sun,Summer2,17.0,Practice 25: OOD in Java,Jerry,Summer3,2.0,Practice 03: Excercise 1,Jin
-71,2018-08-11,,,,,Summer2,17.0,Midterm II,Yan,Summer3,3.0,Practice 02: Object II,Lu
-72,2018-08-12,,,,,Summer2,18.0,Practice 18: Excercise 5,Jerry,Summer3,2.0,Recursion I and Binary search,Sun
-73,2018-08-13,,,,,,,,,Summer3,3.0,Queue and Stack,Tang
-74,2018-08-14,,,,,Summer2,19.0,Practice 22: Concurrency I,Lu,,,,
-75,2018-08-15,,,,,,,,,Summer3,4.0,Linked List,Sun
-76,2018-08-16,,,,,Summer2,20.0,Practice 23: Concurrency II,Lu,,,,
-77,2018-08-17,,,,,Summer2,21.0,Practice 19: Nested Class & etc,Jerry,Summer3,4.0,Practice 05: Excercise 2,Jin
-78,2018-08-18,,,,,Summer2,22.0,Practice 21: C++ vs Java,Lu,Summer3,5.0,Binary Tree,Sun
-79,2018-08-19,,,,,Summer2,18.0,DP I,Zhao,Summer3,5.0,Practice 06: Queue Stack Deque,Jerry
-80,2018-08-20,,,,,,,,,Summer3,6.0,Practice 04: Linked List,Lu
-81,2018-08-21,,,,,Summer2,19.0,DP II,Zhao,,,,
-82,2018-08-22,,,,,,,,,Summer3,7.0,Practice 07: Binary Tree 1,Lu
-83,2018-08-23,,,,,Summer2,20.0,DP III,Zhao,,,,
-84,2018-08-24,,,,,Summer2,23.0,Practice 20: Excercise 6,Jin,Summer3,8.0,Practice 08: Binary Tree 2,Lu
-85,2018-08-25,,,,,Summer2,21.0,System Design 1,Zhao,Summer3,6.0,Heap and Graph Search I,Sun
-86,2018-08-26,,,,,Summer2,22.0,Behavorial,Jon,Summer3,9.0,Practice 09: Heap in Java,Lu
-87,2018-08-27,,,,,,,,,Summer3,7.0,DFS,Sun
-88,2018-08-28,,,,,Summer2,23.0,System Design 2,Zhao,,,,
-89,2018-08-29,,,,,,,,,Summer3,10.0,Practice 10: Implement Heap,Lu
-90,2018-08-30,,,,,Summer2,24.0,System Design 3,Zhao,,,,
-91,2018-08-31,,,,,Summer2,25.0,加强 1,Sun,Summer3,11.0,Practice 12: DFS + Review,Lu
-92,2018-09-01,,,,,Summer2,26.0,System Design 4,Zhao,Summer3,12.0,Practice 11: Excercise 3,Jin
-93,2018-09-02,,,,,Summer2,27.0,加强 2,Sun,Summer3,8.0,HashTable I and String I,Tang
-94,2018-09-03,,,,,,,,,Summer3,13.0,Practice 13: Map Set Hash,Lu
-95,2018-09-04,,,,,Summer2,28.0,System Design 5,Zhao,,,,
-96,2018-09-05,,,,,,,,,Summer3,9.0,String II,Sun
-97,2018-09-06,,,,,Summer2,29.0,System Design 6,Zhao,,,,
-98,2018-09-07,,,,,Summer2,24.0,Practice 24: Excercise 7,Jin,Summer3,14.0,Practice 14: HashTable II,Lu
-99,2018-09-08,,,,,Summer2,30.0,加强 3,Sun,Summer3,10.0,Bit,Wu
-100,2018-09-09,,,,,Summer2,31.0,加强 4,Tang,Summer3,15.0,Practice 16: Excercise 4,Jin
-101,2018-09-10,,,,,,,,,Summer3,11.0,Midterm I,Sun
-102,2018-09-11,,,,,Summer2,32.0,加强 5,Wu,,,,
-103,2018-09-12,,,,,,,,,Summer3,12.0,Recursion II,Sun
-104,2018-09-13,,,,,Summer2,33.0,加强 6,Wu,,,,
-105,2018-09-14,,,,,Summer2,34.0,加强 7,Sun,Summer3,13.0,OOD 1,Lu
-106,2018-09-15,,,,,Summer2,35.0,加强 8,Wu,Summer3,16.0,Practice 17: Inheritance & etc,Jerry
-107,2018-09-16,,,,,,,,,Summer3,14.0,OOD 2,Lu
-108,2018-09-17,,,,,,,,,Summer3,15.0,Midterm II,Sun
-109,2018-09-19,,,,,,,,,Summer3,16.0,OOD 3,Lu
-110,2018-09-21,,,,,,,,,Summer3,17.0,OOD 4,Lu
-111,2018-09-22,,,,,,,,,Summer3,17.0,Practice 25: OOD in Java,Jerry
-112,2018-09-23,,,,,,,,,Summer3,18.0,Practice 22: Concurrency I,Lu
-113,2018-09-24,,,,,,,,,Summer3,19.0,Practice 18: Excercise 5,Jerry
-114,2018-09-26,,,,,,,,,Summer3,20.0,Practice 23: Concurrency II,Lu
-115,2018-09-28,,,,,,,,,Summer3,21.0,Practice 21: C++ vs Java,Lu
-116,2018-09-29,,,,,,,,,Summer3,22.0,Practice 19: Nested Class & etc,Jerry
-117,2018-09-30,,,,,,,,,Summer3,18.0,DP I,Zhao
-118,2018-10-01,,,,,,,,,Summer3,23.0,Practice 20: Excercise 6,Jin
-119,2018-10-03,,,,,,,,,Summer3,19.0,DP II,Zhao
-120,2018-10-05,,,,,,,,,Summer3,20.0,DP III,Zhao
-121,2018-10-06,,,,,,,,,Summer3,24.0,Practice 15 String & Integer,Sun
-122,2018-10-07,,,,,,,,,Summer3,21.0,System Design 1,Zhao
-123,2018-10-08,,,,,,,,,Summer3,22.0,加强 1,Sun
-124,2018-10-10,,,,,,,,,Summer3,23.0,System Design 2,Zhao
-125,2018-10-12,,,,,,,,,Summer3,24.0,System Design 3,Zhao
-126,2018-10-13,,,,,,,,,Summer3,25.0,加强 2,Sun
-127,2018-10-14,,,,,,,,,Summer3,26.0,System Design 4,Zhao
-128,2018-10-15,,,,,,,,,Summer3,27.0,加强 3,Sun
-129,2018-10-17,,,,,,,,,Summer3,28.0,System Design 5,Zhao
-130,2018-10-19,,,,,,,,,Summer3,29.0,System Design 6,Zhao
-131,2018-10-20,,,,,,,,,Summer3,25.0,Practice 24: Excercise 7,Jin
-132,2018-10-21,,,,,,,,,Summer3,30.0,加强 4,Sun
-133,2018-10-22,,,,,,,,,Summer3,31.0,Behavorial,Jon
-134,2018-10-24,,,,,,,,,Summer3,32.0,加强 5,Sun
-135,2018-10-26,,,,,,,,,Summer3,33.0,加强 6,Sun
-136,2018-10-27,,,,,,,,,Summer3,34.0,加强 7,Wu
-137,2018-10-28,,,,,,,,,Summer3,35.0,加强 8,Sun
+,Date,Course_x,Number_x,Class_x,Ins_x,Course_y,Number_y,Class_y,Ins_y
+0,2018-05-26,Summer01,1.0,Practice 01: Object I,Lu,,,,
+1,2018-05-27,Summer01,2.0,Practice 03: Excercise 1,Jin,,,,
+2,2018-05-28,Summer01,2.0,Recursion I and Binary search,Sun,,,,
+3,2018-05-30,Summer01,3.0,Practice 02: Object II,Lu,,,,
+4,2018-06-01,Summer01,3.0,Queue and Stack,Tang,,,,
+5,2018-06-02,Summer01,4.0,Practice 05: Excercise 2,Jin,,,,
+6,2018-06-03,Summer01,5.0,Practice 06: Queue Stack Deque,Lu,,,,
+7,2018-06-04,Summer01,4.0,Linked List,Sun,,,,
+8,2018-06-06,Summer01,5.0,Binary Tree,Sun,,,,
+9,2018-06-08,Summer01,6.0,Practice 04: Linked List,Lu,,,,
+10,2018-06-09,Summer01,7.0,Practice 07: Binary Tree 1,Lu,,,,
+11,2018-06-10,Summer01,8.0,Practice 08: Binary Tree 2,Lu,,,,
+12,2018-06-11,Summer01,6.0,Heap and Graph Search I,Sun,,,,
+13,2018-06-13,Summer01,9.0,Practice 11: Excercise 3,Jin,,,,
+14,2018-06-15,Summer01,10.0,Practice 09: Heap in Java,Jerry,,,,
+15,2018-06-16,Summer01,11.0,Practice 10: Implement Heap,Lu,,,,
+16,2018-06-17,Summer01,7.0,DFS,Tang,,,,
+17,2018-06-18,Summer01,12.0,Practice 12: DFS + Review,Jin,,,,
+18,2018-06-20,Summer01,8.0,HashTable I and String I,Sun,,,,
+19,2018-06-22,Summer01,13.0,Practice 13: Map Set Hash,Jerry,,,,
+20,2018-06-23,Summer01,14.0,Practice 16: Excercise 4,Jin,,,,
+21,2018-06-24,Summer01,9.0,Midterm I,Sun,,,,
+22,2018-06-25,Summer01,15.0,Practice 17: Inheritance & etc,Jerry,,,,
+23,2018-06-27,Summer01,10.0,String II,Wu,,,,
+24,2018-06-29,Summer01,16.0,Practice 14: HashTable II,Lu,,,,
+25,2018-06-30,Summer01,11.0,Recursion II,Tang,Summer02,1.0,Practice 01: Object I,Lu
+26,2018-07-01,Summer01,12.0,Bit,Tang,Summer02,2.0,Practice 03: Excercise 1,Jin
+27,2018-07-02,Summer01,13.0,OOD 1,Zhao,,,,
+28,2018-07-03,,,,,Summer02,2.0,Recursion I and Binary search,Sun
+29,2018-07-04,Summer01,17.0,Practice 18: Excercise 5,Jerry,,,,
+30,2018-07-05,,,,,Summer02,3.0,Queue and Stack,Sun
+31,2018-07-06,Summer01,14.0,Midterm II,Yan,Summer02,3.0,Practice 05: Excercise 2,Jin
+32,2018-07-07,Summer01,18.0,Practice 19: Nested Class & etc,Jerry,Summer02,4.0,Practice 02: Object II,Lu
+33,2018-07-08,Summer01,19.0,Practice 22: Concurrency I,Lu,Summer02,5.0,Practice 06: Queue Stack Deque,Jerry
+34,2018-07-09,Summer01,15.0,DP I,Tang,,,,
+35,2018-07-10,,,,,Summer02,4.0,Linked List,Sun
+36,2018-07-11,Summer01,16.0,System Design 1,Zhao,,,,
+37,2018-07-12,,,,,Summer02,5.0,Binary Tree,Sun
+38,2018-07-13,Summer01,17.0,Behavorial,Jon,Summer02,6.0,Practice 04: Linked List,Lu
+39,2018-07-14,Summer01,18.0,DP II,Tang,Summer02,7.0,Practice 07: Binary Tree 1,Jerry
+40,2018-07-15,Summer01,19.0,System Design 2,Zhao,Summer02,8.0,Practice 08: Binary Tree 2,Lu
+41,2018-07-16,Summer01,20.0,Practice 20: Excercise 6,Jin,,,,
+42,2018-07-17,,,,,Summer02,6.0,Heap and Graph Search I,Sun
+43,2018-07-18,Summer01,20.0,DP III,Tang,,,,
+44,2018-07-19,,,,,Summer02,9.0,Practice 11: Excercise 3,Jin
+45,2018-07-20,Summer01,21.0,System Design 3,Zhao,Summer02,10.0,Practice 09: Heap in Java,Jerry
+46,2018-07-21,Summer01,22.0,System Design 4,Zhao,Summer02,11.0,Practice 10: Implement Heap,Lu
+47,2018-07-22,Summer01,23.0,System Design 5,Zhao,Summer02,7.0,DFS,Tang
+48,2018-07-23,Summer01,24.0,加强 1,Wu,,,,
+49,2018-07-24,,,,,Summer02,12.0,Practice 12: DFS + Review,Jin
+50,2018-07-25,Summer01,25.0,加强 2,Wu,,,,
+51,2018-07-26,,,,,Summer02,8.0,HashTable I and String I,Sun
+52,2018-07-27,Summer01,26.0,System Design 6,Zhao,Summer02,13.0,Practice 13: Map Set Hash,Jerry
+53,2018-07-28,Summer01,21.0,Practice 24: Excercise 7,Jin,Summer02,14.0,Practice 16: Excercise 4,Jin
+54,2018-07-29,Summer01,22.0,Practice 23: Concurrency II,Lu,Summer02,9.0,Midterm I,Yan
+55,2018-07-30,Summer01,27.0,加强 3,Wu,,,,
+56,2018-07-31,,,,,Summer02,15.0,Practice 17: Inheritance & etc,Jerry
+57,2018-08-01,Summer01,28.0,加强 4,Wu,,,,
+58,2018-08-02,,,,,Summer02,10.0,String II,Wu
+59,2018-08-03,Summer01,23.0,Practice 21: C++ vs Java,Lu,Summer02,11.0,Recursion II,Tang
+60,2018-08-04,Summer01,29.0,OOD 2,Tang,Summer02,16.0,Practice 14: HashTable II,Jerry
+61,2018-08-05,Summer01,30.0,OOD 3,Tang,Summer02,12.0,Bit,Tang
+62,2018-08-06,Summer01,31.0,加强 5,Sun,,,,
+63,2018-08-07,,,,,Summer02,13.0,OOD 1,Lu
+64,2018-08-08,Summer01,32.0,加强 6,Wu,,,,
+65,2018-08-09,,,,,Summer02,17.0,Practice 18: Excercise 5,Jerry
+66,2018-08-10,Summer01,33.0,OOD 4,Tang,Summer02,14.0,Midterm II,Sun
+67,2018-08-11,Summer01,24.0,Practice 25: OOD in Java,Jerry,Summer02,18.0,Practice 19: Nested Class & etc,Jerry
+68,2018-08-12,Summer01,34.0,加强 7,Tang,Summer02,19.0,Practice 22: Concurrency I,Lu
+69,2018-08-13,Summer01,35.0,加强 8,Wu,,,,
+70,2018-08-14,,,,,Summer02,20.0,Practice 20: Excercise 6,Jin
+71,2018-08-16,,,,,Summer02,15.0,DP I,Tang
+72,2018-08-17,,,,,Summer02,16.0,System Design 1,Zhao
+73,2018-08-18,,,,,Summer02,17.0,Behavorial,Jon
+74,2018-08-19,,,,,Summer02,18.0,System Design 2,Zhao
+75,2018-08-21,,,,,Summer02,19.0,System Design 3,Zhao
+76,2018-08-23,,,,,Summer02,20.0,加强 1,Sun
+77,2018-08-24,,,,,Summer02,21.0,System Design 4,Zhao
+78,2018-08-25,,,,,Summer02,22.0,DP II,Tang
+79,2018-08-26,,,,,Summer02,23.0,加强 2,Sun
+80,2018-08-28,,,,,Summer02,24.0,加强 3,Wu
+81,2018-08-30,,,,,Summer02,25.0,DP III,Tang
+82,2018-08-31,,,,,Summer02,26.0,System Design 5,Zhao
+83,2018-09-01,,,,,Summer02,27.0,加强 4,Sun
+84,2018-09-02,,,,,Summer02,28.0,加强 5,Wu
+85,2018-09-04,,,,,Summer02,29.0,加强 6,Sun
+86,2018-09-06,,,,,Summer02,30.0,System Design 6,Zhao
+87,2018-09-07,,,,,Summer02,21.0,Practice 24: Excercise 7,Jin
+88,2018-09-08,,,,,Summer02,22.0,Practice 23: Concurrency II,Lu
+89,2018-09-09,,,,,Summer02,23.0,Practice 21: C++ vs Java,Lu
+90,2018-09-11,,,,,Summer02,31.0,加强 7,Wu
+91,2018-09-13,,,,,Summer02,32.0,加强 8,Sun
+92,2018-09-14,,,,,Summer02,33.0,OOD 2,Tang
+93,2018-09-15,,,,,Summer02,34.0,OOD 3,Tang
+94,2018-09-16,,,,,Summer02,35.0,OOD 4,Tang

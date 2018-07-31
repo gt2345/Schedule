@@ -3,9 +3,11 @@ from day_iter import DayIter
 
 class Course:
 
-    def __init__(self, title, start_date, weekdys, lessons):
+    def __init__(self, title, start_date, weekdys, lessons, ins):
         self.title = title
+        self.weekdys = weekdys
         self.lessons = lessons # array of lessons
+        self.ins = ins
         self.start_date = start_date
         self.iter = DayIter(start_date=start_date, weekdys=str(weekdys))
         self.class_list = []
@@ -13,7 +15,6 @@ class Course:
         self.practice_scheduled = 0
         self.practice_total = self.count_practice()
         self.class_total = len(self.lessons) - self.practice_total
-
 
     def count_practice(self):
         count = 0
@@ -31,3 +32,6 @@ class Course:
             lesson.schedule(date=date, ins=ins, number=self.class_scheduled)
         #self.class_list.append([date, self.title, lesson.number, lesson.title, lesson.ins])
         self.class_list.append(lesson)
+
+    def reset_iter(self, start_date):
+        self.iter = DayIter(start_date=start_date, weekdys=str(self.weekdys))

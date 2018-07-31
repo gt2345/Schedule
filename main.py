@@ -1,21 +1,29 @@
 from datetime import date
-import datetime
-# from datetime import datetime
-import time
-import random
-import pandas as pd
 from course import Course
+import copy
 from schedule_helper import *
 
 
 def schedule(courses, start_date):
+    # Schedule not from course start date
+    for c in courses:
+        if c.start_date < start_date and len(c.class_list) == 0:
+            history = pd.read_csv(c.title + '_history_final.csv')
+            #history = pd.read_csv('output.csv')
+            classDf = pd.read_csv('Input/Punch card - Final01.csv').fillna(0)
+            parse_scheduled(history=history, course=c, startdate=start_date, classDf=classDf)
+            c.reset_iter(start_date=start_date)
+
     calendar_dict = {}
     cur = start_date
 
     while True:
         done = True
+
         for c in courses:
+
             if c.class_scheduled <= c.class_total and c.practice_scheduled <= c.practice_total:
+                # print("{} class scheduled: {}".format(c.title, c.class_scheduled))
                 done = False
                 if c.iter.peek() == cur:
                     possible_lessons = []
@@ -35,8 +43,6 @@ def schedule(courses, start_date):
                                     (l.code[1] == 1 and get_lesson(course=c, code=[l.code[0] - 1, 1]).scheduled):
                                 possible_lessons.append(l)
                                 continue
-                    print(c.title)
-                    print(possible_lessons)
                     if len(possible_lessons) == 0:
                         print(cur)
                         print('Not Able to Schedule')
@@ -47,7 +53,7 @@ def schedule(courses, start_date):
                         quit(99)
                     else:
                         # lesson = possible_lessons[1]
-                        opt_retval = get_optimal_and_update(possible_lessons=possible_lessons, calendar_dict=calendar_dict, date=cur)
+                        opt_retval = get_optimal_and_update(course=c, possible_lessons=possible_lessons, calendar_dict=calendar_dict, date=cur)
                         lesson = opt_retval[0]
                         ins = opt_retval[1]
                         if str(ins) != 'nan':
@@ -63,6 +69,7 @@ def schedule(courses, start_date):
         else:
             cur += datetime.timedelta(days=1)
     for c in courses:
+        generate_history(course=c)
         for x in c.class_list:
             print(str(x))
 
@@ -81,17 +88,22 @@ def schedule(courses, start_date):
 
 
 # create lessons ob
-testDf = pd.read_csv('Input/Punch card - Final.csv').fillna(0)
+lesson_df = pd.read_csv('Input/Punch card - Final01.csv').fillna(0)
+ins_list = parse_ins(lesson_df)
+for ins in ins_list:
+    if ins.name == 'Tang':
+        ins.set_adjustment('567', 4)
 
-testDate1 = date(2018, 5, 21)
-testDate2 = date(2018, 6, 27)
-testDate3 = date(2018, 8, 7)
+testDate1 = date(2018, 5, 26)
+testDate2 = date(2018, 6, 30)
+schedule_from = date(2017, 7, 30)
+# testDate3 = date(2018, 8, 7)
 
-course3 = Course(title='Summer3', start_date=testDate3, weekdys=13567, lessons=parse_input(testDf))
-course2 = Course(title='Summer2', start_date=testDate2, weekdys=24567, lessons=parse_input(testDf))
-course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=parse_input(testDf))
+# course3 = Course(title='Summer03', start_date=testDate3, weekdys=13567, lessons=parse_input(testDf))
+course2 = Course(title='Summer02', start_date=testDate2, weekdys=24567, lessons=parse_lesson(lesson_df), ins=copy.deepcopy(ins_list))
+course1 = Course(title='Summer01', start_date=testDate1, weekdys=13567, lessons=parse_lesson(lesson_df), ins=copy.deepcopy(ins_list))
 
-s = schedule(courses=[course1, course2, course3], start_date=testDate1)
+s = schedule(courses=[course1, course2], start_date=schedule_from)
 s.to_csv('Output/res.csv')
 # print(course3.lessons[2].code)
 
