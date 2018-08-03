@@ -4,11 +4,12 @@ import pandas as pd
 
 class Lesson:
 
-    def __init__(self, id, title, lesson_df, code):
+    def __init__(self, id, title, lesson_df, code, week):
         self.title = title
         self.id = id
         self.lesson_df = lesson_df
         self.code = code
+        self.week = week
         self.number = -1
         self.practice = ('Practice' in self.title)
         # print(self.lessonDf['Prerequisite'].item())
