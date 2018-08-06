@@ -14,6 +14,8 @@ class Lesson:
         self.practice = ('Practice' in self.title)
         # print(self.lessonDf['Prerequisite'].item())
         self.scheduled = False
+        self.schedule_buffer = False
+        self.temp_date = None
         self.date = None
         self.ins = None
 
@@ -31,4 +33,14 @@ class Lesson:
         self.date = date
         self.number = number
         self.ins = ins
+
+    def is_scheduled(self):
+        return self.scheduled or self.schedule_buffer
+
+    def get_date(self):
+        if self.date is not None:
+            return self.date
+        else:
+            return self.temp_date
+
 

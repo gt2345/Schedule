@@ -1,5 +1,8 @@
 class Ins:
 
+    pos_adj = 0.2
+    neg_adj = -0.5
+
     def __init__(self, name):
         self.name = name
         self.pos_adjust_weekdys = []
@@ -32,7 +35,7 @@ class Ins:
             return self.neg_adjustment
         return 0
 
-    def apply_cur_adjustment(self, adjustment):
+    def update_cur_adjustment(self, adjustment):
         self.cur_adjustment += (self.cur_adjustment_scale * adjustment)
 
     def set_absent(self, absent_start, absent_end):
@@ -44,3 +47,6 @@ class Ins:
 
     def __str__(self):
         return self.name
+
+    def __eq__(self, other):
+        return self.name == other.name
