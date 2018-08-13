@@ -6,6 +6,7 @@ class Schedule:
     course_index = 0
     lesson_index = 1
     ins_index = 2
+    point_index = 3
 
     def __init__(self, date):
         self.schedule = []
@@ -13,7 +14,7 @@ class Schedule:
         self.point = 0
 
     def add_course(self, course, lesson, ins, point, calendar_dict):
-        self.schedule.append([course, lesson, ins])
+        self.schedule.append([course, lesson, ins, point])
         self.point += point
         if ins is not None:
             if self.date not in calendar_dict:
@@ -30,7 +31,6 @@ class Schedule:
             if s[Schedule.ins_index] is not None:
                 calendar_dict[self.date].append(s[Schedule.ins_index].name)
                 apply_adjustment_to_ins(course=s[Schedule.course_index], ins=s[Schedule.ins_index])
-
         self.schedule = []
 
     def clean_up(self, calendar_dict):
@@ -50,3 +50,16 @@ class Schedule:
         if self.is_valid() and other.is_valid():
             return self.point > other.point
         return self.is_valid()
+
+    def update(self, other):
+        if other.is_valid():
+            for s in other.schedule:
+                cur_course = s[Schedule.course_index]
+                for t in self.schedule:
+                    if t[Schedule.course_index] == cur_course:
+                        self.point -= t[Schedule.point_index]
+
+                        self.schedule.remove(t)
+                self.schedule.append(s)
+                self.point += s[Schedule.point_index]
+

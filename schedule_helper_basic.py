@@ -69,3 +69,11 @@ def apply_adjustment_from_ins(to_be_scheduled_lesson, date, course):
         if cur_lesson_df.loc[:, ins.name].item() != 0:
             cur_lesson_df.loc[:, ins.name] += (adj + ins.cur_adjustment)
     return cur_lesson_df
+
+
+def get_ins_list(ins_list, ins_array):
+    res_ins_list = []
+    for ins in ins_list:
+        if not ins.name in ins_array:
+            res_ins_list.append(ins)
+    return res_ins_list

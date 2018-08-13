@@ -17,6 +17,8 @@ def get_optimal_for_one_course(course, possible_lessons, calendar_dict, date):
             max_point = point
             opt_ins = ins
             opt_lesson = l
+    if max_point <= 0:
+        opt_ins = None
     return [course, opt_lesson, opt_ins, max_point]
 
 
@@ -24,15 +26,16 @@ def get_optimal_for_one_course(course, possible_lessons, calendar_dict, date):
 def get_ins(lesson, course, calendar_dict, date, unavailable_ins):
     drop_list = ['Title', 'Sequence', 'Order', 'Id', 'Week'] + unavailable_ins
     cur_lesson_df = apply_adjustment_from_ins(course=course, to_be_scheduled_lesson=lesson, date=date)
+    print(cur_lesson_df)
     cur_lesson_df = cur_lesson_df.drop(drop_list, axis=1)
-    ins = get_ins_by_name(course=course, name=cur_lesson_df.idxmax(axis=1).item())
+    ins_name = cur_lesson_df.idxmax(axis=1).item()
+    ins = get_ins_by_name(course=course, name=ins_name)
     if date not in calendar_dict:
         calendar_dict[date] = []
     # ins is not scheduled for today or yesterday
-    while (ins.name in calendar_dict[date]) or \
+    while ins is None or (ins.name in calendar_dict[date]) or \
              (date - datetime.timedelta(days=1) in calendar_dict and ins.name in calendar_dict[date - datetime.timedelta(days=1)]):
-        if ins is not None:
-            unavailable_ins.append(ins.name)
+        unavailable_ins.append(ins_name)
         ins = get_ins(lesson=lesson, course=course, unavailable_ins=unavailable_ins, calendar_dict=calendar_dict, date=date)[0]
     return [ins, cur_lesson_df[ins.name].item()]
 
@@ -73,12 +76,16 @@ def get_possible_lessons(course, cur_date):
 
 # courses = [course1, course2, course3]
 # return optimal schedule for one particular course order of one day
-def get_one_schedule(courses, cur_date, calendar_dict):
+def get_one_schedule(courses, cur_date, calendar_dict, drop_list):
     cur_schedule = Schedule(cur_date)
     for c in courses:
+        if c.title in drop_list:
+            print('course dropped')
+            continue
         if (c.class_scheduled < c.class_total + 1 or c.practice_scheduled < c.practice_total) \
                 and c.iter.peek() == cur_date:
             possible_lessons = get_possible_lessons(course=c, cur_date=cur_date)
+            print(possible_lessons)
             if len(possible_lessons) == 0:
                 print(cur_date)
                 print(c.title)
@@ -91,6 +98,7 @@ def get_one_schedule(courses, cur_date, calendar_dict):
                                         ins=optimal_for_one_course[Schedule.ins_index],
                                         point=optimal_for_one_course[-1],calendar_dict=calendar_dict)
     cur_schedule.clean_up(calendar_dict=calendar_dict)
+    print('cur schedule {}'.format(cur_schedule))
     return cur_schedule
 
 
