@@ -1,8 +1,8 @@
 import pandas as pd
 import datetime
 
-history = pd.read_csv('Input/Summer03_history.csv').fillna(0)
-infobase = pd.read_csv('Input/Punch card - Final 0802.csv').fillna(0)
+history = pd.read_csv('Input/Summer02_history.csv').fillna(0)
+infobase = pd.read_csv('Input/Punch card - Final 0806.csv').fillna(0)
 #['Info', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 result = []
 for index, row in history.iterrows():
@@ -21,10 +21,11 @@ output = pd.concat(result)
 output = output[(output['Class'] != 0) & (output['Date'] != 0)]
 output['Id'] = -1
 output = output.set_index('Date')
+print(output)
 for index, row in output.iterrows():
     #print(index)
     if str(row['Class']).startswith('Practice'):
-        key = str(row['Class']).split(' ')[1]
+        key = str(row['Class']).replace(':', ' ').split(' ')[1]
         key = key if len(key) == 2 else "0" + key
         key = "Practice " + key
         output.loc[index, 'Id'] = infobase.loc[infobase['Title'].str.startswith(key, na=False), 'Id'].item()
@@ -37,7 +38,7 @@ for index, row in output.iterrows():
                 output.loc[index, 'Id'] = infobase.loc[infobase['Title'].str.lower() == key, 'Id'].item()
 
 output = output[2:]
-title = 'Summer03'
+title = 'Summer02'
 output['Course'] = title
 #output = output.drop(['Title'], axis=1)
 output.to_csv(title + '_history_final.csv')

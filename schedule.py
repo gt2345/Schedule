@@ -43,6 +43,9 @@ class Schedule:
     def __str__(self):
         return 'Schedule at {}: Lesson is {} '.format(self.date, self.schedule)
 
+    def __repr__(self):
+        return '{} {}'.format(self.date, self.schedule)
+
     def is_valid(self):
         return len(self.schedule) > 0
 
@@ -62,4 +65,9 @@ class Schedule:
                         self.schedule.remove(t)
                 self.schedule.append(s)
                 self.point += s[Schedule.point_index]
+
+    def update_possible_lessons(self, possible_lessons, course):
+        for s in self.schedule:
+            if course == s[Schedule.course_index] and s[Schedule.lesson_index] in possible_lessons:
+                possible_lessons.remove(s[Schedule.lesson_index])
 

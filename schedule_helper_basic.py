@@ -35,8 +35,8 @@ def get_ins_by_name(course, name):
 def generate_history(course):
     history = []
     for l in course.class_list:
-        history.append([l.date, course.title, l.number, l.id, l.ins])
-    pd.DataFrame(history, columns=['Date', 'Course', 'Number', 'Id', 'Ins']).to_csv('Output/' + course.title + '.csv')
+        history.append([l.date, course.title, l.number, l.id, l.title, l.ins])
+    pd.DataFrame(history, columns=['Date', 'Course', 'Number', 'Id', 'Title', 'Ins']).to_csv('Output/' + course.title + '.csv')
 
 
 # if an ins is scheduled for a lesson, all following lesson get Ins.neg_adj and all other ins get Ins.pos_adj
@@ -56,7 +56,7 @@ def earliest_course_start_date(courses):
 
 def check_complete(courses):
     for c in courses:
-        if c.class_scheduled <= c.class_total and c.practice_scheduled <= c.practice_total:
+        if c.class_scheduled < c.class_total + 1 or c.practice_scheduled < c.practice_total:
             return False
     return True
 

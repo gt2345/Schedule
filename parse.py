@@ -19,6 +19,7 @@ def parse_scheduled(courses, start_date, course_start_date, calendar_dict):
         history[course] = history_df
     cur = course_start_date
     while cur < start_date:
+        print('cur is {}'.format(cur))
         cur_schedule = Schedule(date=cur)
         for course, history_df in history.items():
             cur_history_df = history_df[history_df['Date'] == cur]
@@ -30,6 +31,7 @@ def parse_scheduled(courses, start_date, course_start_date, calendar_dict):
                                         calendar_dict=calendar_dict)
 
         if cur_schedule.is_valid():
+            print(cur_schedule)
             cur_schedule.schedule_today(calendar_dict=calendar_dict)
             cur_schedule.clean_up(calendar_dict=calendar_dict)
         cur += datetime.timedelta(days=1)
@@ -46,9 +48,24 @@ def parse_lesson(class_df):
     return lessons
 
 
-def parse_ins(class_df):
+def parse_ins(lesson_df, ins_df):
     ins_list = []
-    for i in class_df.drop(['Title', 'Sequence', 'Order', 'Id', 'Week'], axis=1).columns:
+    for i in lesson_df.drop(['Title', 'Sequence', 'Order', 'Id', 'Week'], axis=1).columns:
         ins_list.append(Ins(i))
-    print(ins_list)
+    for ins in ins_list:
+        cur_ins_df = ins_df[ins_df['Ins'] == ins.name]
+        if not cur_ins_df.empty:
+            if cur_ins_df['adjustment_scale'].item() != 0:
+                ins.cur_adjustment_scale = cur_ins_df['adjustment_scale'].item()
+            if cur_ins_df['absent_start'].item() != 0:
+                cur_start_month, cur_start_day, cur_start_year = cur_ins_df['absent_start'].item().split('/')
+                cur_end_month, cur_end_day, cur_end_year = cur_ins_df['absent_end'].item().split('/')
+                ins.set_absent(absent_start=date(int(cur_start_year), int(cur_start_month), int(cur_start_day)),
+                               absent_end=date(int(cur_end_year), int(cur_end_month), int(cur_end_day)))
+            if cur_ins_df['adjustment_weekdays'].item() != 0:
+
+                ins.set_adjustment(weekdys=str(int(cur_ins_df['adjustment_weekdays'].item())),
+                                   adjust=cur_ins_df['adjustment_weekdays_points'].item())
+
+
     return ins_list

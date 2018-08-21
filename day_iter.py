@@ -22,3 +22,12 @@ class DayIter:
 
     def peek(self):
         return self.cur
+
+    def peek_second(self):
+        res = self.cur
+        res += datetime.timedelta(days=1)
+        while True:
+            if str(res.isoweekday()) in self.weekdys:
+                break
+            res += datetime.timedelta(days=1)
+        return res

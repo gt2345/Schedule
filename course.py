@@ -17,6 +17,7 @@ class Course:
         self.practice_scheduled = 0
         self.practice_total = self.count_practice()
         self.class_total = len(self.lessons) - self.practice_total
+        self.is_completed = self.class_scheduled >= self.class_total - 1 and self.practice_scheduled >= self.practice_total
 
     def count_practice(self):
         count = 0
@@ -36,6 +37,7 @@ class Course:
         self.class_list.append(lesson)
         self.iter.__next__()
 
+
     def reset_iter(self, start_date):
         self.iter = DayIter(start_date=start_date, weekdys=str(self.weekdys))
 
@@ -44,10 +46,18 @@ class Course:
             l.schedule_buffer = False
 
     def complete(self):
-        return self.class_scheduled >= self.class_total - 1 and self.practice_scheduled >= self.practice_total
+        self.is_completed = self.class_scheduled >= self.class_total - 1 \
+                            and self.practice_scheduled >= self.practice_total
+        return self.is_completed
 
     def __str__(self):
         return self.title
 
     def __repr__(self):
         return self.title
+
+    def __eq__(self, other):
+        return self.title == other.title
+
+    def __hash__(self):
+        return hash(self.title)
