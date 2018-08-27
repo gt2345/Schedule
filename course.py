@@ -5,11 +5,12 @@ class Course:
 
     week_separator = 3
 
-    def __init__(self, title, start_date, weekdys, lessons, ins):
+    def __init__(self, title, start_date, weekdys, lessons, ins, unavailable_ins):
         self.title = title
         self.weekdys = weekdys
         self.lessons = lessons # array of lessons
         self.ins = ins
+        self.unavailable_ins = unavailable_ins
         self.start_date = start_date
         self.iter = DayIter(start_date=start_date, weekdys=str(weekdys))
         self.class_list = []
@@ -37,7 +38,6 @@ class Course:
         self.class_list.append(lesson)
         self.iter.__next__()
 
-
     def reset_iter(self, start_date):
         self.iter = DayIter(start_date=start_date, weekdys=str(self.weekdys))
 
@@ -49,6 +49,21 @@ class Course:
         self.is_completed = self.class_scheduled >= self.class_total - 1 \
                             and self.practice_scheduled >= self.practice_total
         return self.is_completed
+
+    def get_last_lesson(self):
+        res = []
+        for l in self.lessons:
+            if not l.is_scheduled():
+                res.append(l)
+        return res
+
+    def no_available_ins(self, unavailable_ins):
+        for i in self.ins:
+            if not i.name in unavailable_ins:
+                return False
+        return True
+
+
 
     def __str__(self):
         return self.title

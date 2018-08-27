@@ -18,6 +18,7 @@ class Lesson:
         self.temp_date = None
         self.date = None
         self.ins = None
+        self.pre_scheduled = False
 
     def __str__(self):
         if self.scheduled:

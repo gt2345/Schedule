@@ -63,9 +63,25 @@ def parse_ins(lesson_df, ins_df):
                 ins.set_absent(absent_start=date(int(cur_start_year), int(cur_start_month), int(cur_start_day)),
                                absent_end=date(int(cur_end_year), int(cur_end_month), int(cur_end_day)))
             if cur_ins_df['adjustment_weekdays'].item() != 0:
-
                 ins.set_adjustment(weekdys=str(int(cur_ins_df['adjustment_weekdays'].item())),
                                    adjust=cur_ins_df['adjustment_weekdays_points'].item())
-
-
+            if cur_ins_df['yesterday'].item() != 0:
+                ins.yesterday = cur_ins_df['yesterday'].item()
     return ins_list
+
+
+def parse_pre_scheduled(pre_scheduled, opt_schedule, calendar_dict, cur, second_day, courses):
+    drop_course = []
+    cur_pre_scheduled = pre_scheduled[pre_scheduled['Date'].isin([str(cur), str(second_day)])]
+    if not cur_pre_scheduled.empty:
+        for c in courses:
+            if not cur_pre_scheduled[cur_pre_scheduled['Course'] == c.title].empty:
+                cur_course_pre_scheduled = cur_pre_scheduled[cur_pre_scheduled['Course'] == c.title]
+                for one in opt_schedule:
+                    if str(one.date) == pre_scheduled['Date'].item():
+                        one.add_course(course=c, lesson=get_lesson(course=c,
+                                                                   id=cur_course_pre_scheduled['Id'].item()),
+                                       ins=get_ins_by_name(course=c, name=cur_course_pre_scheduled['Ins'].item()),
+                                       calendar_dict=calendar_dict, point=0)
+                drop_course.append(c.title)
+    return drop_course

@@ -1,3 +1,6 @@
+import datetime
+
+
 class Ins:
 
     pos_adj = 0.2
@@ -13,6 +16,7 @@ class Ins:
         self.cur_adjustment_scale = 1
         self.absent_start = 0
         self.absent_end = 0
+        self.yesterday = -8
 
     def set_adjustment(self, weekdys, adjust):
         adjust = int(adjust)
@@ -26,14 +30,17 @@ class Ins:
     def has_adjustment(self):
         return self.neg_adjustment != 0 or self.pos_adjustment != 0
 
-    def get_adjustment(self, date):
+    def get_adjustment(self, date, calendar_dict):
         if self.absent_start != 0 and self.absent_start <= date <= self.absent_end:
             return -20
+        adj = 0
         if date.isoweekday() in self.pos_adjust_weekdys:
-            return self.pos_adjustment
+            adj = self.pos_adjustment
         if date.isoweekday() in self.neg_adjust_weekdys:
-            return self.neg_adjustment
-        return 0
+            adj = self.neg_adjustment
+        if (date - datetime.timedelta(days=1) in calendar_dict and self.name in calendar_dict[date - datetime.timedelta(days=1)]):
+            adj += self.yesterday
+        return adj
 
     def update_cur_adjustment(self, adjustment):
         self.cur_adjustment += (self.cur_adjustment_scale * adjustment)
@@ -43,9 +50,13 @@ class Ins:
         self.absent_end = absent_end
 
     def __repr__(self):
+        if self.name is None:
+            return 'None'
         return self.name
 
     def __str__(self):
+        if self.name is None:
+            return 'None'
         return self.name
 
     def __eq__(self, other):

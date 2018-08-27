@@ -10,9 +10,8 @@ def get_optimal_for_one_course(course, possible_lessons, calendar_dict, date):
     opt_lesson = None
     opt_ins = None
     for l in possible_lessons:
-        get_ins_ret = get_ins(lesson=l, course=course, calendar_dict=calendar_dict, date=date, unavailable_ins=[])
-        ins = get_ins_ret[0]
-        point = get_ins_ret[1]
+        ins, point = get_ins(lesson=l, course=course, calendar_dict=calendar_dict, date=date, unavailable_ins=[])
+
         if point > max_point:
             max_point = point
             opt_ins = ins
@@ -24,20 +23,36 @@ def get_optimal_for_one_course(course, possible_lessons, calendar_dict, date):
 
 # return [ins, point]
 def get_ins(lesson, course, calendar_dict, date, unavailable_ins):
+    print('unavailable_ins:   {}'.format(unavailable_ins))
     drop_list = ['Title', 'Sequence', 'Order', 'Id', 'Week'] + unavailable_ins
-    cur_lesson_df = apply_adjustment_from_ins(course=course, to_be_scheduled_lesson=lesson, date=date)
-    # print(cur_lesson_df)
+    cur_lesson_df = apply_adjustment_from_ins(course=course, to_be_scheduled_lesson=lesson, date=date, calendar_dict=calendar_dict)
+    print(cur_lesson_df)
     cur_lesson_df = cur_lesson_df.drop(drop_list, axis=1)
-    ins_name = cur_lesson_df.idxmax(axis=1).item()
+    try:
+        ins_name = cur_lesson_df.idxmax(axis=1).item()
+        print('picked ins {}'.format(ins_name))
+    except ValueError:
+        return None, 0
     ins = get_ins_by_name(course=course, name=ins_name)
+
     if date not in calendar_dict:
         calendar_dict[date] = []
+
+    print('ins name after get ins {} and calendar_dict {}'.format(ins_name, calendar_dict[date]))
     # ins is not scheduled for today or yesterday
-    while ins is None or (ins.name in calendar_dict[date]) or \
-             (date - datetime.timedelta(days=1) in calendar_dict and ins.name in calendar_dict[date - datetime.timedelta(days=1)]):
-        unavailable_ins.append(ins_name)
+    while ins is not None and (ins.name in calendar_dict[date]):
+             #(date - datetime.timedelta(days=1) in calendar_dict and ins.name in calendar_dict[date - datetime.timedelta(days=1)]):
+        unavailable_ins.append(ins.name)
+        if course.no_available_ins(unavailable_ins):
+            break
         ins = get_ins(lesson=lesson, course=course, unavailable_ins=unavailable_ins, calendar_dict=calendar_dict, date=date)[0]
-    return [ins, cur_lesson_df[ins.name].item()]
+
+    if ins is None:
+        return None, 0
+    if cur_lesson_df[ins.name].item() > 0:
+        return ins, cur_lesson_df[ins.name].item()
+    else:
+        return None, 0
 
 
 def get_possible_lessons_detail(course, cur_date, consider_week):
@@ -95,7 +110,7 @@ def get_one_schedule(courses, cur_date, calendar_dict, drop_list, drop_lesson):
         if (c.class_scheduled < c.class_total + 1 or c.practice_scheduled < c.practice_total) \
                 and lesson_date == cur_date:
             possible_lessons = get_possible_lessons(course=c, cur_date=cur_date)
-            # print('today {}  before update  {}'.format(cur_date, possible_lessons))
+            print('today {}   {}'.format(cur_date, possible_lessons))
             if drop_lesson is not None and len(possible_lessons) > 1:
 
                 for d in drop_lesson:
@@ -103,18 +118,20 @@ def get_one_schedule(courses, cur_date, calendar_dict, drop_list, drop_lesson):
                     if d.is_valid() and d.date == cur_date:
                         d.update_possible_lessons(course=c, possible_lessons=possible_lessons)
                         # print('today {}  after update  {}'.format(cur_date, possible_lessons))
+            if len(possible_lessons) == 0 and \
+                    (c.class_total + 1 - c.class_scheduled == 1 or c.practice_total - c.practice_scheduled == 1):
+                #possible_lessons = c.get_last_lesson()
+                pass
+            print(possible_lessons)
             if len(possible_lessons) == 0:
-                if c.class_total + 1 - c.class_scheduled == 1 or c.practice_total - c.practice_scheduled == 1:
-                    continue
-                else:
-                    print(cur_date)
-                    print(c.title)
-                    print(c.class_scheduled)
-                    print(c.class_total)
-                    print(c.practice_scheduled)
-                    print(c.practice_total)
-                    print('Not Able to Schedule')
-                    quit(99)
+                print(cur_date)
+                print(c.title)
+                print(c.class_scheduled)
+                print(c.class_total)
+                print(c.practice_scheduled)
+                print(c.practice_total)
+                print('Not Able to Schedule')
+                return None
             else:
                 optimal_for_one_course = get_optimal_for_one_course(course=c, possible_lessons=possible_lessons,
                                                     calendar_dict=calendar_dict, date=cur_date)

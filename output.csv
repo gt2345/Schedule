@@ -1,0 +1,50 @@
+Date,Class,Title,Ins,Id,Course
+5/21/2018,调试设备,0,Lu,-1,Summer01
+5/22/2018,Class 1,0,Sun,-1,Summer01
+5/26/2018,Practice 1,分班,Lu,101,Summer01
+5/27/2018,Practice 2,0,Jerry,102,Summer01
+5/29/2018,Practice 4,上实践4的内容,Lu,302,Summer01
+5/31/2018,Class 2,Recursion I and Binary search,Tang,103,Summer01
+6/1/2018,Class 3,Queue and Stack,Sun,201,Summer01
+6/2/2018,Practice 3,上实践3的内容,Jin,104,Summer01
+6/3/2018,Practice 5,0,Jerry,303,Summer01
+6/5/2018,Class 4,Linked List,Tang,301,Summer01
+6/7/2018,Practice 6,0,Lu,202,Summer01
+6/8/2018,Class 5,Binary tree,Tang,401,Summer01
+6/9/2018,Practice 7,0,Lu,402,Summer01
+6/10/2018,Practice 8,0,Jerry,403,Summer01
+6/12/2018,Class 6,Heap and Graph Search I,Tang,501,Summer01
+6/14/2018,Practice 9,0,Lu,502,Summer01
+6/15/2018,Practice 10,0,Jin,503,Summer01
+6/16/2018,Class 7,DFS,Tang,601,Summer01
+6/17/2018,Practice 11,0,Jerry,603,Summer01
+6/19/2018,Class 8,HashTable I and String I,Wu,701,Summer01
+6/21/2018,Practice 12,0,Jerry,602,Summer01
+6/22/2018,Practice 13,0,Jin,801,Summer01
+6/23/2018,Class 9,String II,Tang,702,Summer01
+6/24/2018,Class 10,Bit,Wu,803,Summer01
+6/26/2018,Class 11,OOD 1,Lu,1001,Summer01
+6/28/2018,Practice 14,0,Jerry,802,Summer01
+6/29/2018,Class 12,Midterm I,Yan,901,Summer01
+6/30/2018,Practice 15,0,Jin,903,Summer01
+7/1/2018,Class 13,DP I,Tang,1301,Summer01
+7/3/2018,Class 14,OOD 2,Lu,1002,Summer01
+7/5/2018,Class 15,DP II,Tang,1302,Summer01
+7/6/2018,Practice 16,0,Jin,904,Summer01
+7/7/2018,Practice 17, ,Jerry,1006,Summer01
+7/8/2018,Class 16,DP III,Tang,1303,Summer01
+7/10/2018,Class 17,OOD 3,Lu,1003,Summer01
+7/12/2018,Class 18,Recursion II,Sun,902,Summer01
+7/13/2018,Practice 18,0,Jerry,1102,Summer01
+7/14/2018,Practice 19,0,Jerry,1204,Summer01
+7/15/2018,Class 19,Sampling,Wu,1305,Summer01
+7/17/2018,Class 20,OOD 4,Lu,1004,Summer01
+7/19/2018,Class 21,Behavorial,Jon,1509,Summer01
+7/20/2018,Practice 20,0,Jin,1304,Summer01
+7/21/2018,Class 22,Midterm II,Sun,1101,Summer01
+7/22/2018,Class 23,加强 1,Tang,1501,Summer01
+7/24/2018,Practice 21,0,Lu,1203,Summer01
+7/26/2018,Class 24,System Design 1,Zhao,1401,Summer01
+7/27/2018,Class 25,加强 2,Tang,1502,Summer01
+7/28/2018,Practice 24,上24的内容,Jin,1407,Summer01
+7/29/2018,Class 26,加强 3,Tang,1503,Summer01

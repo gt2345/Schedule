@@ -55,17 +55,22 @@ def earliest_course_start_date(courses):
 
 
 def check_complete(courses):
+    print('in check complete')
     for c in courses:
+        print(c.class_scheduled)
+        print(c.class_total + 1)
+        print(c.practice_scheduled)
+        print(c.practice_total)
         if c.class_scheduled < c.class_total + 1 or c.practice_scheduled < c.practice_total:
             return False
     return True
 
 
-def apply_adjustment_from_ins(to_be_scheduled_lesson, date, course):
+def apply_adjustment_from_ins(to_be_scheduled_lesson, date, course, calendar_dict):
     cur_lesson_df = to_be_scheduled_lesson.lesson_df[
         to_be_scheduled_lesson.lesson_df['Id'] == to_be_scheduled_lesson.id]
     for ins in course.ins:
-        adj = ins.get_adjustment(date=date)
+        adj = ins.get_adjustment(date=date, calendar_dict=calendar_dict)
         if cur_lesson_df.loc[:, ins.name].item() != 0:
             cur_lesson_df.loc[:, ins.name] += (adj + ins.cur_adjustment)
     return cur_lesson_df
