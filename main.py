@@ -8,7 +8,7 @@ class_input = 'Input/Punch card - Final 0806.csv'
 ins_adjustment_input = 'Input/Ins.csv'
 
 stop_date = date(2018, 10, 3)
-opt_level = 3
+opt_level = 4
 
 
 def main_schedule(courses, start_date):
@@ -71,7 +71,7 @@ ins_list = parse_ins(lesson_df, ins_df=pd.read_csv(ins_adjustment_input).fillna(
 testDate1 = date(2018, 5, 26)
 testDate2 = date(2018, 6, 30)
 testDate3 = date(2018, 8, 11)
-schedule_from = date(2018, 9, 3)
+schedule_from = date(2018, 9, 10)
 
 course1 = Course(title='Summer01', start_date=testDate1, weekdys=24567,
                  lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins=[])
@@ -82,7 +82,7 @@ course3 = Course(title='Summer03', start_date=testDate3, weekdys=24567,
                  lessons=parse_lesson(lesson_df), ins=get_ins_list(ins_list=ins_list, ins_array=['Joe']),
                  unavailable_ins = ['Joe'])
 
-s = main_schedule(courses=[course2, course3], start_date=testDate2)
+s = main_schedule(courses=[course2, course3], start_date=schedule_from)
 s.to_csv('Output/res.csv')
 
 dur = datetime.datetime.now() - start

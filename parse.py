@@ -55,18 +55,19 @@ def parse_ins(lesson_df, ins_df):
     for ins in ins_list:
         cur_ins_df = ins_df[ins_df['Ins'] == ins.name]
         if not cur_ins_df.empty:
-            if cur_ins_df['adjustment_scale'].item() != 0:
-                ins.cur_adjustment_scale = cur_ins_df['adjustment_scale'].item()
-            if cur_ins_df['absent_start'].item() != 0:
-                cur_start_month, cur_start_day, cur_start_year = cur_ins_df['absent_start'].item().split('/')
-                cur_end_month, cur_end_day, cur_end_year = cur_ins_df['absent_end'].item().split('/')
-                ins.set_absent(absent_start=date(int(cur_start_year), int(cur_start_month), int(cur_start_day)),
-                               absent_end=date(int(cur_end_year), int(cur_end_month), int(cur_end_day)))
-            if cur_ins_df['adjustment_weekdays'].item() != 0:
-                ins.set_adjustment(weekdys=str(int(cur_ins_df['adjustment_weekdays'].item())),
-                                   adjust=cur_ins_df['adjustment_weekdays_points'].item())
-            if cur_ins_df['yesterday'].item() != 0:
-                ins.yesterday = cur_ins_df['yesterday'].item()
+            for _, row in cur_ins_df.iterrows():
+                if row['adjustment_scale'] != 0:
+                    ins.cur_adjustment_scale = row['adjustment_scale']
+                if row['absent_start'] != 0:
+                    cur_start_month, cur_start_day, cur_start_year = row['absent_start'].split('/')
+                    cur_end_month, cur_end_day, cur_end_year = row['absent_end'].split('/')
+                    ins.set_absent(absent_start=date(int(cur_start_year), int(cur_start_month), int(cur_start_day)),
+                                   absent_end=date(int(cur_end_year), int(cur_end_month), int(cur_end_day)))
+                if row['adjustment_weekdays'] != 0:
+                    ins.set_adjustment(weekdys=str(int(row['adjustment_weekdays'])),
+                                       adjust=row['adjustment_weekdays_points'])
+                if row['yesterday'] != 0:
+                    ins.yesterday = row['yesterday']
     return ins_list
 
 

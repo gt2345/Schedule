@@ -22,14 +22,51 @@ def optimization(opt_level, cur, courses, calendar_dict):
 
     #for course_list in all_courses_permu:
     cur_schedule = []
-    course = courses[0]
-    lesson_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=[0], cur_level=0,
-                        cur_schedule=cur_schedule, courses=courses, cur_date=cur, calendar_dict=calendar_dict)
+    day_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=[0], cur_level=0,
+            cur_schedule=cur_schedule, courses=courses, cur_date=cur, calendar_dict=calendar_dict)
     return opt_schedule_list
 
 
-def lesson_dfs(opt_schedule_list, opt_level, opt_point, cur_level, cur_schedule, courses, cur_date, calendar_dict):
-    print('cur date in lesson dfs {}'.format(cur_date))
+# use cur_date_schedule_res to store different course schedule for the same day
+def course_dfs(cur_schedule, cur_date_schedule, courses, course_index, cur_date, calendar_dict, opt_schedule_list,
+               opt_level, opt_point, cur_level, cur_data_opt_point):
+
+    if course_index == len(courses):
+        #cur_date_schedule_res.append(cur_date_schedule.make_copy(calendar_dict=calendar_dict))
+        if cur_date_schedule.point < cur_data_opt_point[0] - 2:
+            return
+        if cur_date_schedule.point > cur_data_opt_point[0]:
+            cur_data_opt_point[0] = cur_date_schedule.point
+        cur_schedule.append(cur_date_schedule)
+        day_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=opt_point,
+                   cur_level=cur_level+1, cur_schedule=cur_schedule, courses=courses,
+                   cur_date=cur_date + datetime.timedelta(days=1), calendar_dict=calendar_dict)
+        cur_schedule[-1].remove_course(other_schedule=cur_date_schedule, calendar_dict=calendar_dict)
+        if not cur_schedule[-1].is_valid():
+            del cur_schedule[-1]
+        return
+
+    course = courses[course_index]
+    if (course.class_scheduled < course.class_total + 1 or course.practice_scheduled < course.practice_total) \
+            and course.has_lesson(date=cur_date):
+        possible_lessons = get_possible_lessons(course=course, cur_date=cur_date)
+        if len(possible_lessons) == 0:
+            return
+        for pl in possible_lessons:
+            ins, point = get_ins(lesson=pl, course=course, calendar_dict=calendar_dict, date=cur_date,
+                                 unavailable_ins=copy.deepcopy(course.unavailable_ins))
+            cur_date_schedule.add_course(course=course, lesson=pl, ins=ins, point=point, calendar_dict=calendar_dict)
+            course_dfs(cur_schedule=cur_schedule, cur_date_schedule=cur_date_schedule, courses=courses,
+                       course_index=course_index+1, cur_date=cur_date, calendar_dict=calendar_dict, cur_level=cur_level,
+                       opt_level=opt_level, opt_point=opt_point, opt_schedule_list=opt_schedule_list, cur_data_opt_point=cur_data_opt_point)
+            cur_date_schedule.remove_course(course=course, lesson=pl, calendar_dict=calendar_dict)
+    else:
+        course_dfs(cur_schedule=cur_schedule, cur_date_schedule=cur_date_schedule, courses=courses,
+                   course_index=course_index + 1, cur_date=cur_date, calendar_dict=calendar_dict, cur_level=cur_level,
+                   opt_level=opt_level, opt_point=opt_point, opt_schedule_list=opt_schedule_list, cur_data_opt_point=cur_data_opt_point)
+
+
+def day_dfs(opt_schedule_list, opt_level, opt_point, cur_level, cur_schedule, courses, cur_date, calendar_dict):
     if cur_level == opt_level:
         if opt_schedule_list is None:
             for cu in cur_schedule:
@@ -46,39 +83,13 @@ def lesson_dfs(opt_schedule_list, opt_level, opt_point, cur_level, cur_schedule,
             for cu in cur_schedule:
                 opt_schedule_list[cu.date] = cu.make_copy(calendar_dict=calendar_dict)
         return
+
     cur_date_schedule = Schedule(date=cur_date)
-    for course in courses:
-        print(cur_level)
-        if (course.class_scheduled < course.class_total + 1 or course.practice_scheduled < course.practice_total) \
-                and course.iter.has_lesson(date=cur_date):
-            possible_lessons = get_possible_lessons(course=course, cur_date=cur_date)
-            if len(possible_lessons) == 0:
-                return
 
-            for pl in possible_lessons:
-                ins, point = get_ins(lesson=pl, course=course, calendar_dict=calendar_dict, date=cur_date,
-                                     unavailable_ins=copy.deepcopy(course.unavailable_ins))
-                #cur_date_schedule.add_course(course=course, lesson=pl, ins=ins, point=point, calendar_dict=calendar_dict)
-                #course_dfs(cur_date_schedule)
-                cur_schedule.append(cur_date_schedule)
+    course_dfs(cur_schedule=cur_schedule, cur_date_schedule=cur_date_schedule, courses=courses,
+               course_index=0, cur_date=cur_date, calendar_dict=calendar_dict, opt_schedule_list=opt_schedule_list,
+               cur_level=cur_level, opt_level=opt_level, opt_point=opt_point, cur_data_opt_point=[0])
 
-                # handle end corner case
-                if len(possible_lessons) == 1 and \
-                                        course.class_scheduled + course.practice_scheduled + len(cur_schedule) == 1 + course.class_total + course.practice_total:
-                    cur_level = opt_level - 1
-
-                lesson_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=opt_point,
-                                    cur_level=cur_level + 1, cur_schedule=cur_schedule, courses=courses,
-                                    cur_date=cur_date + datetime.timedelta(days=1), calendar_dict=calendar_dict)
-                cur_schedule[-1].remove_course(course=course, lesson=pl, calendar_dict=calendar_dict)
-                if not cur_schedule[-1].is_valid():
-                    del cur_schedule[-1]
-        else:
-            lesson_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=opt_point,
-                       cur_level=cur_level + 1, cur_schedule=cur_schedule, courses=courses,
-                       cur_date=cur_date + datetime.timedelta(days=1), calendar_dict=calendar_dict)
-
-
-def course_dfs(cur_date_schedule, courses, level):
-    pass
+    #day_dfs(opt_schedule_list=opt_schedule_list, opt_level=opt_level, opt_point=opt_point, cur_level=cur_level+1,
+     #       cur_schedule=cur_schedule, courses=courses, cur_date=cur_date + datetime.timedelta(days=1), calendar_dict=calendar_dict)
 

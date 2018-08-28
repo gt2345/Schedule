@@ -49,5 +49,3 @@ class DayIter:
             res += datetime.timedelta(days=1)
         return res
 
-    def has_lesson(self, date):
-        return str(date.isoweekday()) in self.weekdys

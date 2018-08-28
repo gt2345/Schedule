@@ -23,15 +23,29 @@ class Schedule:
         lesson.temp_date = self.date
         lesson.schedule_buffer = True
 
-    def remove_course(self, course, lesson, calendar_dict):
-        for idx, val in enumerate(self.schedule):
-            if val[Schedule.course_index] == course and val[Schedule.lesson_index].title == lesson.title:
-                if val[Schedule.ins_index] is not None:
-                    calendar_dict[self.date].remove(val[Schedule.ins_index].name)
-                    self.point -= val[Schedule.point_index]
-                val[Schedule.lesson_index].temp_date = None
-                val[Schedule.lesson_index].schedule_buffer = False
-                del self.schedule[idx]
+    def remove_course(self, calendar_dict, other_schedule=None, course=None, lesson=None):
+        if other_schedule is not None:
+            for val in reversed(self.schedule):
+                for os in other_schedule.schedule:
+                    course = os[Schedule.course_index]
+                    lesson = os[Schedule.lesson_index]
+                    if val[Schedule.course_index] == course and val[Schedule.lesson_index].id == lesson.id:
+                        if val[Schedule.ins_index] is not None:
+                            calendar_dict[self.date].remove(val[Schedule.ins_index].name)
+                            self.point -= val[Schedule.point_index]
+                        val[Schedule.lesson_index].temp_date = None
+                        val[Schedule.lesson_index].schedule_buffer = False
+                        self.schedule.remove(val)
+        elif course is not None and lesson is not None:
+            for idx, val in enumerate(self.schedule):
+                if val[Schedule.course_index] == course and val[Schedule.lesson_index].title == lesson.title:
+                    if val[Schedule.ins_index] is not None:
+                        calendar_dict[self.date].remove(val[Schedule.ins_index].name)
+                        self.point -= val[Schedule.point_index]
+                    val[Schedule.lesson_index].temp_date = None
+                    val[Schedule.lesson_index].schedule_buffer = False
+                    del self.schedule[idx]
+
 
     def schedule_today(self, calendar_dict):
         calendar_dict[self.date] = []

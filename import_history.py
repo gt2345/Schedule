@@ -1,7 +1,7 @@
 import pandas as pd
 import datetime
 
-history = pd.read_csv('Input/Summer02_history.csv').fillna(0)
+history = pd.read_csv('Input/Summer03_history.csv').fillna(0)
 infobase = pd.read_csv('Input/Punch card - Final 0806.csv').fillna(0)
 #['Info', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 result = []
@@ -38,7 +38,7 @@ for index, row in output.iterrows():
                 output.loc[index, 'Id'] = infobase.loc[infobase['Title'].str.lower() == key, 'Id'].item()
 
 output = output[2:]
-title = 'Summer02'
+title = 'Summer03'
 output['Course'] = title
 #output = output.drop(['Title'], axis=1)
 output.to_csv(title + '_history_final.csv')

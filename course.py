@@ -63,7 +63,8 @@ class Course:
                 return False
         return True
 
-
+    def has_lesson(self, date):
+        return date >= self.start_date and str(date.isoweekday()) in list(str(self.weekdys))
 
     def __str__(self):
         return self.title
