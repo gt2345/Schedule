@@ -9,7 +9,12 @@ class Lesson:
         self.id = id
         self.lesson_df = lesson_df
         self.code = code
-        self.week = week
+        if week > 1:
+            self.pre_req = week
+            self.week = 0
+        else:
+            self.pre_req = 0
+            self.week = week
         self.number = -1
         self.practice = ('Practice' in self.title)
         # print(self.lessonDf['Prerequisite'].item())
@@ -28,6 +33,9 @@ class Lesson:
 
     def __repr__(self):
         return self.title
+
+    def __eq__(self, other):
+        return self.id == other.id
 
     def schedule(self, date, ins, number):
         self.scheduled = True

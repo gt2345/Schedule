@@ -46,7 +46,6 @@ class Schedule:
                     val[Schedule.lesson_index].schedule_buffer = False
                     del self.schedule[idx]
 
-
     def schedule_today(self, calendar_dict):
         calendar_dict[self.date] = []
         for s in self.schedule:
@@ -83,13 +82,13 @@ class Schedule:
             for s in other.schedule:
                 cur_course = s[Schedule.course_index]
                 for t in self.schedule:
-                    if t[Schedule.lesson_index].pre_scheduled is True:
-                        continue
                     if t[Schedule.course_index] == cur_course:
+                        if t[Schedule.lesson_index].pre_scheduled is True:
+                            continue
                         self.point -= t[Schedule.point_index]
                         self.schedule.remove(t)
-                self.schedule.append(s)
-                self.point += s[Schedule.point_index]
+                        self.schedule.append(s)
+                        self.point += s[Schedule.point_index]
 
     def update_possible_lessons(self, possible_lessons, course):
         for s in self.schedule:
@@ -106,3 +105,12 @@ class Schedule:
             copy.add_course(course=k[Schedule.course_index], lesson=k[Schedule.lesson_index],
                            ins=k[Schedule.ins_index], point=k[Schedule.point_index], calendar_dict=calendar_dict)
         return copy
+
+    def equals(self, other):
+        for s1 in self.schedule:
+            for s2 in self.schedule:
+                if s1[Schedule.course_index] == s2[Schedule.course_index]:
+                    if s1[Schedule.lesson_index].Id != s2[Schedule.lesson_index].Id or \
+                                    s1[Schedule.ins_index].name != s2[Schedule.ins_index].name:
+                        return False
+        return True

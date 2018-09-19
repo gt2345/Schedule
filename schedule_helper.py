@@ -23,14 +23,12 @@ def get_optimal_for_one_course(course, possible_lessons, calendar_dict, date):
 
 # return [ins, point]
 def get_ins(lesson, course, calendar_dict, date, unavailable_ins):
-    print('unavailable_ins:   {}'.format(unavailable_ins))
     drop_list = ['Title', 'Sequence', 'Order', 'Id', 'Week'] + unavailable_ins
-    cur_lesson_df = apply_adjustment_from_ins(course=course, to_be_scheduled_lesson=lesson, date=date, calendar_dict=calendar_dict)
-    print(cur_lesson_df)
+    cur_lesson_df = apply_adjustment(course=course, to_be_scheduled_lesson=lesson, date=date, calendar_dict=calendar_dict)
+    # print(cur_lesson_df)
     cur_lesson_df = cur_lesson_df.drop(drop_list, axis=1)
     try:
         ins_name = cur_lesson_df.idxmax(axis=1).item()
-        print('picked ins {}'.format(ins_name))
     except ValueError:
         return None, 0
     ins = get_ins_by_name(course=course, name=ins_name)
@@ -38,9 +36,8 @@ def get_ins(lesson, course, calendar_dict, date, unavailable_ins):
     if date not in calendar_dict:
         calendar_dict[date] = []
 
-    print('ins name after get ins {} and calendar_dict {}'.format(ins_name, calendar_dict[date]))
     # ins is not scheduled for today or yesterday
-    while ins is not None and (ins.name in calendar_dict[date]):
+    while ins is not None and (ins.name in calendar_dict[date] or not ins.available_this_week(calendar_dict=calendar_dict,cur=date)):
              #(date - datetime.timedelta(days=1) in calendar_dict and ins.name in calendar_dict[date - datetime.timedelta(days=1)]):
         unavailable_ins.append(ins.name)
         if course.no_available_ins(unavailable_ins):
@@ -59,6 +56,7 @@ def get_possible_lessons_detail(course, cur_date, consider_week):
     possible_lessons = []
     for l in course.lessons:
         if not l.is_scheduled():
+
             # Practice Class 01 corner case
             if l.code[0] == 1:
                 if l.code[1] == 1 and not get_lesson(course=course, code=[1, 1]).is_scheduled():
@@ -66,7 +64,9 @@ def get_possible_lessons_detail(course, cur_date, consider_week):
                     break
                 elif get_lesson(course=course, code=[1, 1]).is_scheduled():
                     possible_lessons.append(l)
-
+            elif l.pre_req > 0:
+                if get_lesson(course=course,id=l.pre_req).is_scheduled():
+                    possible_lessons.append(l)
             elif (l.week == 0 or (l.week == 1 and l.code[1] == 1)) and \
                     ((l.code[1] == 0 and get_lesson(course=course, code=[l.code[0] - 1, 1]).is_scheduled()) or \
                     (l.code[1] > 1 and get_lesson(course=course, code=[l.code[0], l.code[1] - 1]).is_scheduled()) or \
@@ -139,7 +139,7 @@ def get_one_schedule(courses, cur_date, calendar_dict, drop_list, drop_lesson):
                                         ins=optimal_for_one_course[Schedule.ins_index],
                                         point=optimal_for_one_course[-1],calendar_dict=calendar_dict)
     # cur_schedule.clean_up(calendar_dict=calendar_dict)
-    print('cur schedule {}'.format(cur_schedule))
+    # print('cur schedule {}'.format(cur_schedule))
     return cur_schedule
 
 

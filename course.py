@@ -4,6 +4,8 @@ from day_iter import DayIter
 class Course:
 
     week_separator = 3
+    prefer_to_be_ordered_up_to = 500
+    not_scheduled_scale = 1
 
     def __init__(self, title, start_date, weekdys, lessons, ins, unavailable_ins):
         self.title = title
@@ -77,3 +79,9 @@ class Course:
 
     def __hash__(self):
         return hash(self.title)
+
+    def all_scheduled(self):
+        for l in self.lessons:
+            if not l.is_scheduled():
+                return False
+        return True
