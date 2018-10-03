@@ -2,16 +2,15 @@ from day_iter import DayIter
 
 
 class Course:
-
-    week_separator = 3
-    prefer_to_be_ordered_up_to = 500
+    # week_separator = 3
+    prefer_to_be_ordered_up_to = 900
     not_scheduled_scale = 1
 
     def __init__(self, title, start_date, weekdys, lessons, ins, unavailable_ins):
         self.title = title
         self.weekdys = weekdys
         self.lessons = lessons # array of lessons
-        self.ins = ins
+        self.ins = self.get_ins_list(ins_list=ins, ins_array=unavailable_ins)
         self.unavailable_ins = unavailable_ins
         self.start_date = start_date
         self.iter = DayIter(start_date=start_date, weekdys=str(weekdys))
@@ -85,3 +84,12 @@ class Course:
             if not l.is_scheduled():
                 return False
         return True
+
+
+    def get_ins_list(self, ins_list, ins_array):
+        res_ins_list = []
+        for ins in ins_list:
+            if not ins.name in ins_array:
+                res_ins_list.append(ins)
+        return res_ins_list
+

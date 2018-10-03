@@ -1,6 +1,21 @@
 ,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
                 ,9/17/2018,9/18/2018,9/19/2018,9/20/2018,9/21/2018,9/22/2018,9/23/2018
-Fall 1,Class 1,,Practice 1,,Practice 2,Class 2,Class 3
-正式班,,,,,,Recursion I and Binary search,Queue and Stack
-sun@laioffer.com,Sun,,Lu,,Jerry,Tang,Wu
+Fall 1,Class 1,,,,Practice 1,,Class 2
+正式班,,,,,,,Recursion I and Binary search
+sun@laioffer.com,Sun,,,,Lu,,Sun
 TA,,,,,,,
+,9/24/2018,9/25/2018,9/26/2018,9/27/2018,9/28/2018,9/29/2018,9/30/2018
+Fall 1,Practice 2,,Practice 3,,Class 3,Practice 4,Class 4
+正式班,,,,,Queue and Stack,,Linked List
+sun@laioffer.com,Lu,,Joe,,Tang,Lu,Tang
+TA,,,,,,,
+,10/1/2018,10/2/2018,10/3/2018,10/4/2018,10/5/2018,10/6/2018,10/7/2018
+Fall 1,Practice 6,,Class 5,,Practice 5,Class 6,Practice 7
+正式班,上6：Queue Stack,,Binary Tree,,上5：Excercise 2,Heap and Graph Search I,
+sun@laioffer.com,Lu,,Tang,,Tony,Wu,Lu
+TA,Allen,,Allen,,,,
+,10/8/2018,10/9/2018,10/10/2018,10/11/2018,10/12/2018,10/13/2018,10/14/2018
+Fall 1,Class 7,,Practice 8,,Practice 9,Practice 10,Class 8
+正式班,DFS,,,,,,Hashtable I and String I
+sun@laioffer.com,Tang,,Lu,,Lu,Jerry,Tang
+TA,Allen,,Allen,,,,

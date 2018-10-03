@@ -9,7 +9,7 @@ class Lesson:
         self.id = id
         self.lesson_df = lesson_df
         self.code = code
-        if week > 1:
+        if week > 100:
             self.pre_req = week
             self.week = 0
         else:

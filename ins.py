@@ -3,8 +3,8 @@ import datetime
 
 class Ins:
 
-    pos_adj = 0.2
-    neg_adj = -0.5
+    pos_adj = 0.4
+    neg_adj = -1
 
     def __init__(self, name):
         self.name = name
@@ -17,7 +17,7 @@ class Ins:
         self.absent_start = []
         self.absent_end = []
         self.yesterday = -8
-        self.max_per_week = 2
+        self.max_per_week = 3
 
     def set_adjustment(self, weekdys, adjust):
         adjust = int(adjust)
@@ -40,7 +40,7 @@ class Ins:
             adj = self.pos_adjustment
         if date.isoweekday() in self.neg_adjust_weekdys:
             adj = self.neg_adjustment
-        if (date - datetime.timedelta(days=1) in calendar_dict and self.name in calendar_dict[date - datetime.timedelta(days=1)]):
+        if date - datetime.timedelta(days=1) in calendar_dict and self.name in calendar_dict[date - datetime.timedelta(days=1)]:
             adj += self.yesterday
         return adj
 
@@ -62,7 +62,6 @@ class Ins:
                     return False
         return True
 
-
     def __repr__(self):
         if self.name is None:
             return 'None'
@@ -74,4 +73,8 @@ class Ins:
         return self.name
 
     def __eq__(self, other):
+        if self is None and other is None:
+            return True
+        if self is None or other is None:
+            return False
         return self.name == other.name

@@ -1,4 +1,4 @@
-from schedule_helper_basic import *
+from get_ins import apply_adjustment_to_ins
 
 
 class Schedule:
@@ -114,3 +114,51 @@ class Schedule:
                                     s1[Schedule.ins_index].name != s2[Schedule.ins_index].name:
                         return False
         return True
+
+    def __cmp__(self, other):
+        if self.point < other.point:
+            return -1
+        if self.point > other.point:
+            return 1
+        return 0
+
+    def __lt__(self, other):
+        return self.point < other.point
+
+    def __eq__(self,other):
+        if len(self.schedule) == 0 and len(other.schedule) == 0:
+            return True
+        if len(self.schedule) == 0 or len(other.schedule) == 0:
+            return False
+        for s in self.schedule:
+            course = s[Schedule.course_index]
+            for o in other.schedule:
+                if course == o[Schedule.course_index]:
+                    if s[Schedule.lesson_index] != o[Schedule.lesson_index]:
+                        return False
+        return True
+
+    # used only in RL
+    def equal_one_course(self, other, course):
+        if len(self.schedule) == 0 and len(other.schedule) == 0:
+            return True
+        if len(self.schedule) == 0 or len(other.schedule) == 0:
+            return False
+        for s in self.schedule:
+            if s[Schedule.course_index] != course:
+                continue
+            for o in other.schedule:
+                if o[Schedule.course_index] != course:
+                    continue
+                if s[Schedule.lesson_index] != o[Schedule.lesson_index]: #or s[Schedule.ins_index] != o[Schedule.ins_index]:
+                    return False
+        return True
+
+    # used only in RL
+    def is_in(self, list_of_schedule, course):
+        for sch in range(len(list_of_schedule)):
+            if list_of_schedule[sch].point < list_of_schedule[0].point - 2:
+                return False
+            if self.equal_one_course(list_of_schedule[sch], course):
+                return True
+        return False
