@@ -34,7 +34,7 @@ def get_possible_lessons_detail(course, cur_date, consider_week):
 # if no available lessons, disregard week_separator
 def get_possible_lessons(course, cur_date):
     possible_lessons = get_possible_lessons_detail(course=course, cur_date=cur_date, consider_week=True)
-    if len(possible_lessons) == 0 or (len(possible_lessons) == 1 and possible_lessons[0].week == 0):
+    if len(possible_lessons) == 0: # or (len(possible_lessons) == 1 and possible_lessons[0].week == 0):
         possible_lessons = get_possible_lessons_detail(course=course, cur_date=cur_date, consider_week=False)
     return possible_lessons
 

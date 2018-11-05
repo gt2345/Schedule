@@ -3,8 +3,8 @@ from day_iter import DayIter
 
 class Course:
     # week_separator = 3
-    prefer_to_be_ordered_up_to = 900
-    not_scheduled_scale = 1
+    prefer_to_be_ordered_up_to = 1200
+    not_scheduled_scale = 2
 
     def __init__(self, title, start_date, weekdys, lessons, ins, unavailable_ins):
         self.title = title

@@ -1,61 +1,61 @@
-,Date,Course,Number,Id,Title,Ins
-0,2018-06-30,Summer02,1,101,Practice 01: Object I,Lu
-1,2018-07-01,Summer02,2,102,Practice 02: Object II,Joe
-2,2018-07-02,Summer02,3,104,Practice 03: Excercise 1,Joe
-3,2018-07-04,Summer02,2,103,Recursion I and Binary search,Sun
-4,2018-07-06,Summer02,4,302,Practice 04: Linked List,Lu
-5,2018-07-07,Summer02,3,201,Queue and Stack,Sun
-6,2018-07-08,Summer02,5,303,Practice 05: Excercise 2,Yan
-7,2018-07-09,Summer02,4,301,Linked List,Sun
-8,2018-07-11,Summer02,6,202,Practice 06: Queue Stack Deque,Lu
-9,2018-07-13,Summer02,5,401,Binary Tree,Tang
-10,2018-07-14,Summer02,7,402,Practice 07: Binary Tree 1,Joe
-11,2018-07-15,Summer02,8,403,Practice 08: Binary Tree 2,Lu
-12,2018-07-16,Summer02,6,501,Heap and Graph Search I,Tang
-13,2018-07-18,Summer02,9,502,Practice 09: Heap in Java,Lu
-14,2018-07-20,Summer02,7,601,DFS,Sun
-15,2018-07-21,Summer02,10,503,Practice 10: Implement Heap,Lu
-16,2018-07-22,Summer02,11,504,Practice 11: Excercise 3,Joe
-17,2018-07-23,Summer02,8,701,HashTable I and String I,Sun
-18,2018-07-25,Summer02,12,602,Practice 12: DFS + Review,Joe
-19,2018-07-27,Summer02,13,801,Practice 13: Map Set Hash,Lu
-20,2018-07-28,Summer02,9,702,String II,Sun
-21,2018-07-29,Summer02,10,803,Bit,
-22,2018-07-30,Summer02,11,901,Midterm I,Yan
-23,2018-08-01,Summer02,14,802,Practice 14: HashTable II,Lu
-24,2018-08-03,Summer02,12,1001,OOD 1,Lu
-25,2018-08-04,Summer02,15,903,Practice 15: String & Integer,Joe
-26,2018-08-05,Summer02,13,1101,DP I,Tang
-27,2018-08-06,Summer02,16,904,Practice 16: Excercise 4,Joe
-28,2018-08-08,Summer02,14,1202,Sampling,
-29,2018-08-10,Summer02,15,1102,DP II,Tang
-30,2018-08-11,Summer02,17,1005,Practice 17: Inheritance & etc,Joe
-31,2018-08-12,Summer02,16,1103,DP III,Tang
-32,2018-08-13,Summer02,18,1104,Practice 18: Excercise 5,Joe
-33,2018-08-15,Summer02,17,1409,Resume,Jon
-34,2018-08-17,Summer02,19,1105,Practice 19: Nested Class & etc,Yan
-35,2018-08-18,Summer02,18,1002,OOD 2,Lu
-36,2018-08-19,Summer02,19,902,Recursion II,Tang
-37,2018-08-20,Summer02,20,1106,Practice 20: Excercise 6,Joe
-38,2018-08-22,Summer02,20,1003,OOD 3,Lu
-39,2018-08-24,Summer02,21,1004,OOD 4,Zhao
-40,2018-08-25,Summer02,22,1201,Midterm II,Yan
-41,2018-08-26,Summer02,23,1401,加强 1,Wu
-42,2018-08-27,Summer02,24,1301,System Design 1,Zhao
-43,2018-08-29,Summer02,21,1107,Practice 21: C++ vs Java,Lu
-44,2018-08-31,Summer02,25,1402,加强 2,Wu
-45,2018-09-01,Summer02,26,1302,System Design 2,Zhao
-46,2018-09-02,Summer02,27,1403,加强 3,Wu
-47,2018-09-03,Summer02,28,1404,加强 4,Wu
-48,2018-09-05,Summer02,22,1501,Practice 22: Concurrency I,Lu
-49,2018-09-07,Summer02,29,1303,System Design 3,Zhao
-50,2018-09-08,Summer02,30,1405,加强 5,Tang
-51,2018-09-09,Summer02,31,1304,System Design 4,Zhao
-52,2018-09-10,Summer02,23,1503,Practice 24: Excercise 7,Joe
-53,2018-09-12,Summer02,32,1305,System Design 5,Zhao
-54,2018-09-14,Summer02,33,1406,加强 6,Tang
-55,2018-09-15,Summer02,34,1306,System Design 6,Zhao
-56,2018-09-16,Summer02,24,1502,Practice 23: Concurrency II,Lu
-57,2018-09-17,Summer02,35,1407,加强 7,Tang
-58,2018-09-19,Summer02,36,1408,加强 8,Wu
-59,2018-09-21,Summer02,25,1504,Practice 25: OOD in Java,Lu
+Date,Number,Title,Ins,Id,Course
+2018-06-30,1,Practice 01: Object I,Lu,101,Summer02
+2018-07-01,2,Recursion I and Binary search,Tang,103,Summer02
+2018-07-02,2,Practice 02: Object II,Jerry,102,Summer02
+2018-07-04,3,Practice 03: Excercise 1,Joe,104,Summer02
+2018-07-06,3,Queue and Stack,Tang,201,Summer02
+2018-07-07,4,Practice 06: Queue Stack Deque,Lu,202,Summer02
+2018-07-08,4,Linked List,Tang,203,Summer02
+2018-07-09,5,Practice 04: Linked List,Jerry,301,Summer02
+2018-07-11,6,Practice 05: Excercise 2,Joe,302,Summer02
+2018-07-13,5,Binary Tree,Tang,401,Summer02
+2018-07-14,7,Practice 07: Binary Tree 1,Lu,402,Summer02
+2018-07-15,8,Practice 11: Excercise 3,Joe,504,Summer02
+2018-07-16,9,Practice 08: Binary Tree 2,Yan,403,Summer02
+2018-07-18,6,Heap and Graph Search I,Lu,501,Summer02
+2018-07-20,10,Practice 09: Heap in Java,Lu,502,Summer02
+2018-07-21,11,Practice 10: Implement Heap,Lu,503,Summer02
+2018-07-22,7,DFS,Tang,601,Summer02
+2018-07-23,12,Practice 12: DFS + Review,Joe,602,Summer02
+2018-07-25,8,HashTable I and String I,Wu,701,Summer02
+2018-07-27,13,Practice 13: Map Set Hash,Lu,801,Summer02
+2018-07-28,14,Practice 16: Excercise 4,Joe,904,Summer02
+2018-07-29,15,Practice 14: HashTable II,Lu,802,Summer02
+2018-07-30,9,String II,Wu,702,Summer02
+2018-08-01,16,Practice 15: String & Integer,Lu,903,Summer02
+2018-08-03,10,Midterm I,Yan,901,Summer02
+2018-08-04,11,OOD 1,Lu,1001,Summer02
+2018-08-05,12,DP I,Tang,1101,Summer02
+2018-08-06,17,Practice 18: Excercise 5,Joe,1104,Summer02
+2018-08-08,13,OOD 2,Lu,1002,Summer02
+2018-08-10,14,DP II,Tang,1102,Summer02
+2018-08-11,15,OOD 3,Zhao,1003,Summer02
+2018-08-12,16,DP III,Tang,1103,Summer02
+2018-08-13,17,OOD 4,Zhao,1004,Summer02
+2018-08-15,18,Practice 19: Nested Class & etc,Jerry,1105,Summer02
+2018-08-17,19,Practice 20: Excercise 6,Joe,1106,Summer02
+2018-08-18,18,Midterm II,Yan,1201,Summer02
+2018-08-19,20,Practice 17: Inheritance & etc,Joe,1005,Summer02
+2018-08-20,19,Sampling,Wu,1202,Summer02
+2018-08-22,21,Practice 21: C++ vs Java,Lu,1107,Summer02
+2018-08-24,20,Bit,Wu,803,Summer02
+2018-08-25,21,System Design 1,Zhao,1301,Summer02
+2018-08-26,22,Recursion II,Tang,902,Summer02
+2018-08-27,23,System Design 2,Zhao,1302,Summer02
+2018-08-29,24,加强 1,Wu,1401,Summer02
+2018-08-31,25,System Design 3,Zhao,1303,Summer02
+2018-09-01,26,加强 2,Wu,1402,Summer02
+2018-09-02,27,System Design 4,Zhao,1304,Summer02
+2018-09-03,28,Resume,Jon,1409,Summer02
+2018-09-05,29,System Design 5,Zhao,1305,Summer02
+2018-09-07,30,System Design 6,Zhao,1306,Summer02
+2018-09-08,31,加强 3,Wu,1403,Summer02
+2018-09-09,22,Practice 24: Excercise 7,Joe,1503,Summer02
+2018-09-10,32,加强 4,Wu,1404,Summer02
+2018-09-12,33,加强 5,Wu,1405,Summer02
+2018-09-14,23,Practice 22: Concurrency I,Lu,1501,Summer02
+2018-09-15,34,加强 6,Wu,1406,Summer02
+2018-09-16,24,Practice 23: Concurrency II,Lu,1502,Summer02
+2018-09-17,35,加强 7,Wu,1407,Summer02
+2018-09-19,36,加强 8,Wu,1408,Summer02
+2018-09-21,25,Practice 25: OOD in Java,Lu,1504,Summer02

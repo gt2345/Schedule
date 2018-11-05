@@ -94,9 +94,10 @@ def import_history(title):
         else:
             for s in r:
                 output_list.append(s)
-
+    print(output_list)
     if len(output_list) % 4 != 0:
         print("error")
+        print(len(output_list))
         quit(11)
     output_df = pd.DataFrame(columns=["Date", "Class", "Title", "Ins"])
 
@@ -115,7 +116,7 @@ def import_history(title):
     for index, row in output.iterrows():
         if str(row['Class']).startswith('Practice'):
             key = str(row['Class']).replace(':', ' ').split(' ')[1]
-            if row['Title'] is not None and len(row['Title']) > 2:
+            if row['Title'] is not None and len(row['Title']) > 1:
                 temp_key = get_practice_num(row['Title'])
                 if int(temp_key) > 0:
                     key = temp_key
@@ -133,5 +134,7 @@ def import_history(title):
     output['Course'] = title
     output.to_csv("Output/" + title + '_history_cleaned.csv')
 
-title = "Fall01"
-import_history(title)
+
+title = ["Fall01"]
+for t in title:
+    import_history(t)

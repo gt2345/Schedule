@@ -17,8 +17,8 @@ def main_schedule(courses, start_date, opt_level, schedule_week, scale_factor):
     while True:
         if schedule_week > 0 and cur >= start_date + datetime.timedelta(days=7 * schedule_week):
             break
-        if cur >= start_date + datetime.timedelta(days=6):
-            break
+        # if cur >= start_date + datetime.timedelta(days=6):
+        #    break
 
         # for one day, schedule with different order
         opt_schedule_list = optimization(opt_level=opt_level, cur=cur, courses=courses, calendar_dict=calendar_dict,
@@ -58,7 +58,7 @@ def main_schedule(courses, start_date, opt_level, schedule_week, scale_factor):
             calendar_df = pd.merge(calendar_df,
                                    pd.DataFrame(calendar_list,columns=['Date', 'Course', 'Number', 'Class', 'Ins']),
                                    how='outer', on='Date', sort='Date')
-    #calendar_df.to_csv('Output/res.csv')
+    calendar_df.to_csv('Output/res.csv')
     #print('point: {}'.format(point))
     #print('counter: {}'.format(counter))
 

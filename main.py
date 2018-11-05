@@ -14,13 +14,13 @@ def main():
     ins_list = parse_ins(lesson_df, ins_df=pd.read_csv(ins_adjustment_input).fillna(0))
 
     testDate1 = date(2018, 9, 19)
-    testDate2 = date(2018, 6, 30)
+    Fall2 = date(2018, 10, 28)
     testDate3 = date(2018, 8, 11)
-    schedule_from = date(2018, 10, 15)
+    schedule_from = date(2018, 11, 5)
 
     Fall1 = Course(title='Fall01', start_date=testDate1, weekdys=13567,
                     lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Jin'])
-    course2 = Course(title='Summer02', start_date=testDate2, weekdys=13567,
+    Fall2 = Course(title='Fall02', start_date=Fall2, weekdys=24567,
                      lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Jin'])
     course3 = Course(title='Summer03', start_date=testDate3, weekdys=24567,
                      lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Joe'])
@@ -29,7 +29,7 @@ def main():
     opt_level = 4
     schedule_week = 1
     scale_factor = 0.5
-    main_schedule(courses=[course3, Fall1], start_date=schedule_from, opt_level=opt_level, schedule_week=schedule_week, scale_factor=scale_factor)
+    main_schedule(courses=[Fall1, Fall2], start_date=schedule_from, opt_level=opt_level, schedule_week=schedule_week, scale_factor=scale_factor)
 
 
 start = datetime.datetime.now()

@@ -41,7 +41,7 @@ else:
     quit(4)
 
 
-insDf = pd.read_csv('Punch card - Ins.csv')
+insDf = pd.read_csv('Ins.csv')
 cur_lessonDf = testDf[testDf['Title'].isin(['Recursion I and Binary search'])].drop(['Title', 'Code'], axis=1)
 print(cur_lessonDf)
 # print(insDf)
@@ -59,7 +59,6 @@ for i in insDf['Ins']:
         drop_list = ['Title', 'Sequence', 'Order'] + unavailableIns
 
         # Update lessonDf with date
-        # insDf = pd.read_csv('Punch card - Ins.csv')
         cur_lessonDf = self.lessonDf[self.lessonDf['Title'].isin([self.title])].drop(drop_list, axis=1)
 
 

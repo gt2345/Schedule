@@ -51,7 +51,7 @@ def course_dfs(cur_schedule, cur_date_schedule, courses, course_index, cur_date,
 
         elif cur_date_schedule.point < len(cur_date_schedule.schedule) * 5 or \
             cur_date_schedule.point < cur_data_opt_point[cur_level] - (opt_level - cur_level) * scale_factor:
-            print('pruning at level {}  {} , {} {}'.format(cur_level, courses, cur_data_opt_point, cur_date_schedule))
+            #print('pruning at level {}  {} , {} {}'.format(cur_level, courses, cur_data_opt_point, cur_date_schedule))
             global CUR_COMPLETE
             CUR_COMPLETE += complete[0]
             print('pruning = {}'.format(CUR_COMPLETE))
@@ -83,6 +83,7 @@ def course_dfs(cur_schedule, cur_date_schedule, courses, course_index, cur_date,
         for pl in possible_lessons:
             ins, point = get_ins(lesson=pl, course=course, calendar_dict=calendar_dict, date=cur_date,
                                  unavailable_ins=copy.deepcopy(course.unavailable_ins))
+            print("ins = {} point = {}".format(ins, point))
             cur_date_schedule.add_course(course=course, lesson=pl, ins=ins, point=point, calendar_dict=calendar_dict)
             course_dfs(cur_schedule=cur_schedule, cur_date_schedule=cur_date_schedule, courses=courses,
                        course_index=course_index+1, cur_date=cur_date, calendar_dict=calendar_dict, cur_level=cur_level,
@@ -111,7 +112,7 @@ def day_dfs(opt_schedule_list, opt_level, opt_point, cur_level, cur_schedule, co
         for cu in cur_schedule:
             if cu is not None:
                 cur_point += cu.point
-        print('{} cur schedule {}'.format(cur_point, cur_schedule))
+        #print('{} cur schedule {}'.format(cur_point, cur_schedule))
         if cur_point > opt_point[0]:
             opt_point[0] = cur_point
             for cu in cur_schedule:

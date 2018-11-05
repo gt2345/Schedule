@@ -6,7 +6,7 @@ from ins import Ins
 def get_ins(lesson, course, calendar_dict, date, unavailable_ins):
     drop_list = ['Title', 'Sequence', 'Order', 'Id', 'Week'] + unavailable_ins
     cur_lesson_df = apply_adjustment(course=course, to_be_scheduled_lesson=lesson, date=date, calendar_dict=calendar_dict)
-    # print(cur_lesson_df)
+    #print(cur_lesson_df)
     cur_lesson_df = cur_lesson_df.drop(drop_list, axis=1)
     try:
         ins_name = cur_lesson_df.idxmax(axis=1).item()
