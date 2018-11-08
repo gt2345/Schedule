@@ -1,0 +1,41 @@
+,Date,Course_x,Number_x,Class_x,Ins_x,Course_y,Number_y,Class_y,Ins_y
+0,2018-09-21,Fall01,1.0,Practice 01: Object I,Lu,,,,
+1,2018-09-23,Fall01,2.0,Recursion I and Binary search,Sun,,,,
+2,2018-09-24,Fall01,2.0,Practice 02: Object II,Lu,,,,
+3,2018-09-26,Fall01,3.0,Practice 03: Excercise 1,Joe,,,,
+4,2018-09-28,Fall01,3.0,Queue and Stack,Tang,,,,
+5,2018-09-29,Fall01,4.0,Practice 04: Linked List,Lu,,,,
+6,2018-09-30,Fall01,4.0,Linked List,Tang,,,,
+7,2018-10-01,Fall01,5.0,Practice 06: Queue Stack Deque,Lu,,,,
+8,2018-10-03,Fall01,5.0,Binary Tree,Tang,,,,
+9,2018-10-05,Fall01,6.0,Practice 05: Excercise 2,,,,,
+10,2018-10-06,Fall01,6.0,Heap and Graph Search I,Wu,,,,
+11,2018-10-07,Fall01,7.0,Practice 09: Heap in Java,Lu,,,,
+12,2018-10-08,Fall01,7.0,DFS,Tang,,,,
+13,2018-10-10,Fall01,8.0,Practice 10: Implement Heap,Lu,,,,
+14,2018-10-12,Fall01,9.0,Practice 07: Binary Tree 1,Lu,,,,
+15,2018-10-13,Fall01,10.0,Practice 08: Binary Tree 2,Jerry,,,,
+16,2018-10-14,Fall01,8.0,HashTable I and String I,Wu,,,,
+17,2018-10-15,Fall01,11.0,Practice 11: Excercise 3,,,,,
+18,2018-10-17,Fall01,12.0,Practice 12: DFS + Review,Jerry,,,,
+19,2018-10-19,Fall01,9.0,String II,Wu,,,,
+20,2018-10-20,Fall01,13.0,Practice 13: Map Set Hash,Jerry,,,,
+21,2018-10-21,Fall01,10.0,Midterm I,Yan,,,,
+22,2018-10-22,Fall01,14.0,Practice 14: HashTable II,Jerry,,,,
+23,2018-10-24,Fall01,11.0,OOD 1,Lu,,,,
+24,2018-10-26,Fall01,12.0,Bit,Wu,,,,
+25,2018-10-27,Fall01,15.0,Practice 16: Excercise 4,,,,,
+26,2018-10-28,Fall01,16.0,Practice 15: String & Integer,Jerry,,,,
+27,2018-10-29,Fall01,13.0,DFS 2,Tang,,,,
+28,2018-10-31,Fall01,14.0,OOD 2,Lu,,,,
+29,2018-11-02,Fall01,17.0,Practice 17: Inheritance & etc,Jerry,,,,
+30,2018-11-03,Fall01,18.0,Practice 18: Excercise 5,,Fall02,1.0,Practice 01: Object I,Lu
+31,2018-11-04,Fall01,15.0,Sampling,Wu,Fall02,2.0,Practice 02: Object II,Jerry
+32,2018-11-05,Fall01,16.0,OOD 3,Zhao,,,,
+33,2018-11-06,,,,,Fall02,2.0,Recursion I and Binary search,Tang
+34,2018-11-07,Fall01,17.0,DP I,Wu,,,,
+35,2018-11-08,,,,,Fall02,3.0,Practice 03: Excercise 1,Joe
+36,2018-11-09,Fall01,18.0,OOD 4,Zhao,Fall02,3.0,Linked List,Tang
+37,2018-11-10,Fall01,19.0,DP II,Wu,Fall02,4.0,Practice 04: Linked List,Lu
+38,2018-11-11,Fall01,19.0,Practice 20: Excercise 6,Joe,Fall02,4.0,Queue and Stack,Tang
+39,2018-11-12,Fall01,20.0,Resume,Jon,,,,

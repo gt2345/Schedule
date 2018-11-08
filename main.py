@@ -1,97 +1,70 @@
-from datetime import date
-import datetime
-import random
-import pandas as pd
-from course import Course
-from schedule_helper import *
+from main_schedule import main_schedule
+from parse import *
+
+class_input = 'Input/class_input_for_RL finished.csv'
+ins_adjustment_input = 'Input/Ins.csv'
 
 
-def schedule(courses, start_date):
-    calendar_dict = {}
-    cur = start_date
+def main():
 
-    while True:
-        done = True
-        for c in courses:
-            if c.class_scheduled < len(c.lessons[0]) or c.practice_scheduled < len(c.lessons[1]):
-                done = False
-                if c.iter.peek() == cur:
-                    if c.class_scheduled < len(c.lessons[0]) and c.practice_scheduled < len(c.lessons[1]):
-                        rand = random.random()
+    # create lessons ob
+    lesson_df = pd.read_csv(class_input).fillna(0)
 
-                        if rand <= 0.5:
-                            l = c.lessons[0][c.class_scheduled]
-                            if check_pre(lesson=l, course=c):
-                                c.class_scheduled += 1
-                            else:
-                                l = c.lessons[1][c.practice_scheduled]
-                                if check_pre(lesson=l, course=c):
-                                    c.practice_scheduled += 1
-                                else:
-                                    print(l)
-                                    print('Not Able to Schedule')
-                                    quit(1)
-                        else :
-                            l = c.lessons[1][c.practice_scheduled]
-                            if check_pre(lesson=l, course=c):
-                                c.practice_scheduled += 1
-                            else:
-                                l = c.lessons[0][c.class_scheduled]
-                                if check_pre(lesson=l, course=c):
-                                    c.class_scheduled += 1
-                                else:
-                                    print(l)
-                                    print('Not Able to Schedule')
-                                    quit(2)
-                    elif c.class_scheduled < len(c.lessons[0]):
-                        l = c.lessons[0][c.class_scheduled]
-                        if check_pre(lesson=l, course=c):
-                            c.class_scheduled += 1
-                        else:
-                            print(l)
-                            print('Not Able to Schedule')
-                            quit(3)
-                    else:
-                        l = c.lessons[1][c.practice_scheduled]
-                        if check_pre(lesson=l, course=c):
-                            c.practice_scheduled += 1
-                        else:
-                            print(l)
-                            print('Not Able to Schedule')
-                            quit(4)
+    # create job ob
+    ins_list = parse_ins(lesson_df, ins_df=pd.read_csv(ins_adjustment_input).fillna(0))
 
-                    l.schedule(date=cur, calendar_dict=calendar_dict)
-                    c.class_list.append([cur, c.title, l.title, l.ins])
-                    c.iter.__next__()
+    testDate1 = date(2018, 9, 19)
+    Fall2 = date(2018, 10, 28)
+    testDate3 = date(2018, 8, 11)
+    schedule_from = date(2018, 11, 5)
 
-        if done:
-            break
-        else:
-            cur += datetime.timedelta(days=1)
-    calendar_df = pd.DataFrame()
-    for c in courses:
-        if calendar_df.empty:
-            calendar_df = pd.DataFrame(c.class_list, columns=['Date', 'Course', 'Class', 'Ins'])
-            continue
-        calendar_df = pd.merge(calendar_df, pd.DataFrame(c.class_list, columns=['Date', 'Course', 'Class', 'Ins']), how='outer', on='Date', sort='Date')
-    return calendar_df
+    Fall1 = Course(title='Fall01', start_date=testDate1, weekdys=13567,
+                    lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Jin'])
+    Fall2 = Course(title='Fall02', start_date=Fall2, weekdys=24567,
+                     lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Jin'])
+    course3 = Course(title='Summer03', start_date=testDate3, weekdys=24567,
+                     lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = ['Joe'])
+    course1 = Course(title='Summer01', start_date=date(2018, 5, 26), weekdys=24567,
+                     lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins = [])
+    opt_level = 4
+    schedule_week = 1
+    scale_factor = 0.5
+    main_schedule(courses=[Fall1, Fall2], start_date=schedule_from, opt_level=opt_level, schedule_week=schedule_week, scale_factor=scale_factor)
+
+
+start = datetime.datetime.now()
+main()
+print('dur = {}'.format(datetime.datetime.now() - start))
+quit(12)
+
+
+def graph():
+    # create lessons ob
+    lesson_df = pd.read_csv(class_input).fillna(0)
+    res = []
+    levels = [3]
+    for level in levels:
+        scale_factor = 0
+        while scale_factor <= 0:
+            ins_list = parse_ins(lesson_df, ins_df=pd.read_csv(ins_adjustment_input).fillna(0))
+            print('scale_factor = {}'.format(scale_factor))
+            print('level = {}'.format(level))
+            course3 = Course(title='Summer03', start_date=date(2018, 8, 11), weekdys=24567,
+                             lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins=['Joe'])
+            Fall1 = Course(title='Fall01', start_date=date(2018, 9, 19), weekdys=13567,
+                           lessons=parse_lesson(lesson_df), ins=ins_list, unavailable_ins=['Jin'])
+            start = datetime.datetime.now()
+            point, counter, point_list = main_schedule(courses=[course3,Fall1], start_date=date(2018, 10, 15), opt_level=level,
+                          schedule_week=-1, scale_factor=scale_factor)
+            dur = datetime.datetime.now() - start
+
+            print('dur = {}'.format(dur))
+            print('point = {}'.format(point_list))
+            res.append([scale_factor, level, point, counter, dur, str(point_list)])
+            scale_factor += 0.2
+        #pd.DataFrame(res, columns=['scale_factor', 'level', 'point', 'counter', 'dur', 'point_list']).to_csv('Output/graph01.csv', mode = 'a', header=False)
 
 
 
-# create lessons ob
-classDf = pd.read_csv('classInput.csv')
-practiceDf = pd.read_csv('practiceInput.csv')
 
-
-testDate1 = date(2018, 5, 21)
-testDate2 = date(2018, 6, 27)
-testDate3 = date(2018, 8, 7)
-
-course3 = Course(title='Summer3', start_date=testDate3, weekdys=13567, lessons=[parse_input(classDf), parse_input(practiceDf)])
-course2 = Course(title='Summer2', start_date=testDate2, weekdys=24567, lessons=[parse_input(classDf), parse_input(practiceDf)])
-course1 = Course(title='Summer1', start_date=testDate1, weekdys=13567, lessons=[parse_input(classDf), parse_input(practiceDf)])
-
-s = schedule(courses=[course1, course2, course3], start_date=testDate1)
-s.to_csv('res.csv')
-print(s)
 

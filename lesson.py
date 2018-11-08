@@ -1,33 +1,55 @@
-class Lesson:
-    def __init__(self, title, lessonDf):
-        self.title = title
-        self.lessonDf = lessonDf
+import datetime
+import pandas as pd
 
+
+class Lesson:
+
+    def __init__(self, id, title, lesson_df, code, week):
+        self.title = title
+        self.id = id
+        self.lesson_df = lesson_df
+        self.code = code
+        if week > 100:
+            self.pre_req = week
+            self.week = 0
+        else:
+            self.pre_req = 0
+            self.week = week
+        self.number = -1
+        self.practice = ('Practice' in self.title)
         # print(self.lessonDf['Prerequisite'].item())
         self.scheduled = False
+        self.schedule_buffer = False
+        self.temp_date = None
+        self.date = None
+        self.ins = None
+        self.pre_scheduled = False
 
     def __str__(self):
         if self.scheduled:
-            return "%s scheduled at %s for %s" % (self.title, self.date, self.ins)
+            return "%s %d %s scheduled at %s for %s" % (self.code, self.number, self.title, self.date, self.ins)
         else:
-            return "%s not scheduled yet" % (self.title)
+            return "%s %s not scheduled yet" % (self.code, self.title)
 
+    def __repr__(self):
+        return self.title
 
-    def schedule(self, date, calendar_dict):
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def schedule(self, date, ins, number):
         self.scheduled = True
         self.date = date
-        ins = self.getIns()
-        if self.date in calendar_dict:
-            unavailableIns = []
-            while ins in calendar_dict[self.date]:
-                unavailableIns.append(ins)
-                ins = self.getIns(unavailableIns=unavailableIns)
-            calendar_dict[self.date].append(ins)
-        else:
-            calendar_dict[self.date] = [ins]
+        self.number = number
         self.ins = ins
 
-    def getIns(self, unavailableIns=[]):
-        drop_list = ['Title', 'Prerequisite'] + unavailableIns
-        return self.lessonDf.drop(drop_list, axis=1).idxmax(axis=1).item()
+    def is_scheduled(self):
+        return self.scheduled or self.schedule_buffer
+
+    def get_date(self):
+        if self.date is not None:
+            return self.date
+        else:
+            return self.temp_date
+
 
